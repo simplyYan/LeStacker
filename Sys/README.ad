@@ -1,0 +1,112 @@
+= Python `sys` Module Tutorial
+
+This tutorial introduces the `sys` module in Python, which provides access to interpreter-specific information and functions related to the system.
+
+== Introduction to the `sys` Module
+
+The `sys` module is a built-in module in Python that provides access to various system-specific functionalities and interpreter-related information.
+
+== Importing the `sys` Module
+
+To use the `sys` module, import it at the beginning of your script:
+
+[source,python]
+----
+import sys
+----
+
+== Accessing Command-Line Arguments
+
+The `sys.argv` list stores the command-line arguments passed to the script when it is executed:
+
+[source,python]
+----
+# script.py
+import sys
+
+# Print command-line arguments
+print("Script name:", sys.argv[0])
+print("Arguments:", sys.argv[1:])
+----
+
+When running `script.py` with `python script.py arg1 arg2`, the output will be:
+Script name: script.py
+Arguments: ['arg1', 'arg2']
+
+== Exiting the Program
+
+The `sys.exit()` function is used to exit the program with a specified exit status:
+
+[source,python]
+----
+import sys
+
+def main():
+    # Perform program tasks
+    if some_condition:
+        sys.exit(1)  # Exit with a non-zero status code
+
+if __name__ == "__main__":
+    main()
+----
+
+== Standard Input/Output
+
+The `sys.stdin`, `sys.stdout`, and `sys.stderr` streams provide access to standard input, output, and error streams, respectively:
+
+[source,python]
+----
+import sys
+
+# Read from standard input
+input_data = sys.stdin.readline()
+
+# Write to standard output
+sys.stdout.write("Hello, stdout!\n")
+
+# Write to standard error
+sys.stderr.write("Error: Something went wrong!\n")
+----
+
+== Interpreter Version Information
+
+The `sys.version` string provides information about the Python interpreter's version:
+
+[source,python]
+----
+import sys
+
+print("Python version:", sys.version)
+print("Python version info:", sys.version_info)
+----
+
+== Runtime Configuration
+
+The `sys.path` list contains directories where Python searches for modules:
+
+[source,python]
+----
+import sys
+
+# Print module search paths
+for path in sys.path:
+    print(path)
+----
+
+== Handling Recursion Limits
+
+The `sys.setrecursionlimit()` function sets the maximum depth of the Python interpreter stack:
+
+[source,python]
+----
+import sys
+
+sys.setrecursionlimit(10000)  # Set recursion limit to 10000
+----
+
+== Conclusion
+
+The `sys` module in Python provides access to interpreter-specific information and functionalities related to the system. This tutorial covered accessing command-line arguments, exiting the program, standard input/output, interpreter version information, runtime configuration, and handling recursion limits.
+
+For further details and advanced features, refer to the official Python documentation (https://docs.python.org/3/library/sys.html).
+

@@ -1,0 +1,92 @@
+= Python `glob` Module Tutorial
+
+This tutorial introduces the `glob` module in Python, which provides functions for file searching using Unix shell-style wildcards.
+
+== Introduction to the `glob` Module
+
+The `glob` module is a built-in module in Python that facilitates file searches using pattern matching similar to Unix shell-style wildcards.
+
+== Importing the `glob` Module
+
+To use the `glob` module, import it at the beginning of your script:
+
+[source,python]
+----
+import glob
+----
+
+== Using Wildcards
+
+The `glob.glob()` function is used to search for files using wildcards:
+
+[source,python]
+----
+import glob
+
+# Find all .txt files in the current directory
+txt_files = glob.glob("*.txt")
+print("Text files:", txt_files)
+
+# Find all files in subdirectories with .csv extension
+csv_files = glob.glob("subdir/**/*.csv", recursive=True)
+print("CSV files:", csv_files)
+----
+
+== Recursive Search
+
+By setting the `recursive` parameter to `True`, you can search in subdirectories recursively:
+
+[source,python]
+----
+import glob
+
+# Find all .py files recursively
+py_files = glob.glob("**/*.py", recursive=True)
+print("Python files:", py_files)
+----
+
+== Matching Multiple Patterns
+
+You can use a list of patterns to match files:
+
+[source,python]
+----
+import glob
+
+# Find all .txt and .csv files
+files = glob.glob(["*.txt", "*.csv"])
+print("Text and CSV files:", files)
+----
+
+== Sorting Results
+
+The `glob.glob()` function returns results in an arbitrary order. You can sort the results using the `sorted()` function:
+
+[source,python]
+----
+import glob
+
+# Find and sort .txt files
+txt_files = sorted(glob.glob("*.txt"))
+print("Sorted text files:", txt_files)
+----
+
+== Handling Non-Matching Patterns
+
+When a pattern doesn't match any files, `glob.glob()` returns an empty list:
+
+[source,python]
+----
+import glob
+
+# Find .doc files (non-matching pattern)
+doc_files = glob.glob("*.doc")
+if not doc_files:
+    print("No .doc files found.")
+----
+
+== Conclusion
+
+The `glob` module in Python provides a simple way to search for files using Unix shell-style wildcards. This tutorial covered using wildcards, recursive search, matching multiple patterns, sorting results, and handling non-matching patterns.
+
+For further details and advanced usage, refer to the official Python documentation (https://docs.python.org/3/library/glob.html).

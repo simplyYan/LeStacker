@@ -1,0 +1,103 @@
+= OpenCV Tutorial: Image Processing and Computer Vision
+
+This tutorial introduces OpenCV, a popular computer vision library in Python. We'll cover the basics of loading images, image manipulation, basic image processing, and more.
+
+== Introduction to OpenCV
+
+OpenCV is a powerful open-source computer vision library that provides tools for image and video analysis, processing, and computer vision tasks.
+
+== Installing OpenCV
+
+Before we start, make sure you have OpenCV installed:
+
+[source,bash]
+----
+pip install opencv-python
+----
+
+== Loading and Displaying Images
+
+Load and display images using OpenCV:
+
+[source,python]
+----
+import cv2
+
+# Load an image
+image = cv2.imread("image.jpg")
+
+# Display the image
+cv2.imshow("Loaded Image", image)
+cv2.waitKey(0)  # Wait for a key press
+cv2.destroyAllWindows()  # Close the window
+----
+
+== Image Manipulation
+
+Perform basic image manipulation tasks:
+
+[source,python]
+----
+# Resize an image
+resized_image = cv2.resize(image, (new_width, new_height))
+
+# Crop an image
+cropped_image = image[y_start:y_end, x_start:x_end]
+
+# Rotate an image
+rotation_matrix = cv2.getRotationMatrix2D(center, angle, scale)
+rotated_image = cv2.warpAffine(image, rotation_matrix, (width, height))
+----
+
+== Image Filtering
+
+Apply filters for smoothing and edge detection:
+
+[source,python]
+----
+# Gaussian blur
+blurred_image = cv2.GaussianBlur(image, (kernel_size, kernel_size), sigmaX=0)
+
+# Edge detection (Canny)
+edges = cv2.Canny(image, threshold1, threshold2)
+----
+
+== Drawing on Images
+
+Draw shapes and text on images:
+
+[source,python]
+----
+# Draw a line
+cv2.line(image, (start_x, start_y), (end_x, end_y), color, thickness)
+
+# Draw a rectangle
+cv2.rectangle(image, (x, y), (x + width, y + height), color, thickness)
+
+# Draw a circle
+cv2.circle(image, (center_x, center_y), radius, color, thickness)
+
+# Write text
+cv2.putText(image, "Hello, OpenCV!", (x, y), font, font_scale, color, thickness)
+----
+
+== Face Detection
+
+Detect faces in an image:
+
+[source,python]
+----
+# Load a pre-trained face detection model
+face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+
+# Detect faces
+faces = face_cascade.detectMultiScale(gray_image, scaleFactor, minNeighbors)
+for (x, y, w, h) in faces:
+    cv2.rectangle(image, (x, y), (x + w, y + h), (255, 0, 0), 2)
+----
+
+== Conclusion
+
+OpenCV is a powerful library for image processing and computer vision tasks. This tutorial covered loading and displaying images, image manipulation, filtering, drawing on images, and face detection.
+
+For further details, examples, and advanced features, refer to the OpenCV documentation (https://docs.opencv.org/).

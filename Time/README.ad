@@ -1,0 +1,107 @@
+= Python `time` Module Tutorial
+
+This tutorial introduces the `time` module in Python, which provides functions to work with time-related operations and measurements.
+
+== Introduction to the `time` Module
+
+The `time` module is a built-in module in Python that provides various functions for working with time and measuring time intervals.
+
+== Importing the `time` Module
+
+To use the `time` module, import it at the beginning of your script:
+
+[source,python]
+----
+import time
+----
+
+== Getting the Current Time
+
+The `time.time()` function returns the current time in seconds since the epoch (January 1, 1970):
+
+[source,python]
+----
+import time
+
+current_time = time.time()
+print("Current time:", current_time)
+----
+
+== Formatting Time
+
+Use the `time.strftime()` function to format time as a string:
+
+[source,python]
+----
+import time
+
+current_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+print("Formatted time:", current_time)
+----
+
+== Sleep Function
+
+The `time.sleep()` function suspends execution for a specified number of seconds:
+
+[source,python]
+----
+import time
+
+print("Starting task...")
+time.sleep(2)  # Sleep for 2 seconds
+print("Task completed.")
+----
+
+== Measuring Time Intervals
+
+Use `time.time()` to measure time intervals:
+
+[source,python]
+----
+import time
+
+start_time = time.time()
+# Perform some task
+end_time = time.time()
+
+elapsed_time = end_time - start_time
+print("Elapsed time:", elapsed_time, "seconds")
+----
+
+== Timing Code Execution
+
+You can use the `time` module to measure the execution time of code:
+
+[source,python]
+----
+import time
+
+start_time = time.time()
+# Code to be timed
+end_time = time.time()
+
+execution_time = end_time - start_time
+print("Execution time:", execution_time, "seconds")
+----
+
+== CPU Time
+
+The `time.process_time()` function returns the CPU time used by the current process:
+
+[source,python]
+----
+import time
+
+start_cpu_time = time.process_time()
+# Code execution
+end_cpu_time = time.process_time()
+
+cpu_execution_time = end_cpu_time - start_cpu_time
+print("CPU execution time:", cpu_execution_time, "seconds")
+----
+
+== Conclusion
+
+The `time` module in Python provides functions to work with time-related operations and measurements. This tutorial covered getting the current time, formatting time, using the `sleep` function, measuring time intervals, timing code execution, and measuring CPU time.
+
+For further details and advanced usage, refer to the official Python documentation (https://docs.python.org/3/library/time.html).

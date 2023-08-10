@@ -1,0 +1,157 @@
+= FastAPI Tutorial
+
+This tutorial introduces FastAPI, a modern web framework for building APIs in Python that focuses on speed and type annotations.
+
+== Introduction to FastAPI
+
+FastAPI is a high-performance web framework for building APIs with Python. It's built on top of Starlette for the web parts and Pydantic for data validation and serialization.
+
+== Installation and Setup
+
+To get started with FastAPI, first, you need to install it using pip:
+
+[source,shell]
+----
+pip install fastapi
+----
+
+FastAPI also requires an ASGI server to run. One of the popular choices is Uvicorn:
+
+[source,shell]
+----
+pip install uvicorn
+----
+
+== Building Your First FastAPI App
+
+Create a file named `main.py` and start building your FastAPI application:
+
+[source,python]
+----
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+def read_root():
+    return {"message": "Hello, FastAPI!"}
+----
+
+== Running the App
+
+Run your FastAPI app using Uvicorn:
+
+[source,shell]
+----
+uvicorn main:app --reload
+----
+
+Visit `http://127.0.0.1:8000` in your browser to see the "Hello, FastAPI!" message.
+
+== Path Parameters and Query Parameters
+
+FastAPI makes it easy to define path parameters and query parameters:
+
+[source,python]
+----
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/items/{item_id}")
+def read_item(item_id: int, q: str = None):
+    return {"item_id": item_id, "q": q}
+----
+
+Visit `http://127.0.0.1:8000/items/42?q=search` to see the response with item_id and q values.
+
+== Request Body
+
+You can also handle request bodies using Pydantic models:
+
+[source,python]
+----
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+
+app = FastAPI()
+
+class Item(BaseModel):
+    name: str
+    description: str = None
+
+@app.post("/items/")
+def create_item(item: Item):
+    return item
+----
+
+Send a POST request with JSON data to `http://127.0.0.1:8000/items/` to create a new item.
+
+== Query Parameters with Type Annotations
+
+Type annotations and query parameters make your code self-documenting:
+
+[source,python]
+----
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/items/")
+def read_item(skip: int = 0, limit: int = 10):
+    return {"skip": skip, "limit": limit}
+----
+
+Visit `http://127.0.0.1:8000/items/?skip=20&limit=5` to see the response.
+
+== Path Parameters with Enum
+
+You can use Python Enum to define path parameters with allowed values:
+
+[source,python]
+----
+from fastapi import FastAPI
+from enum import Enum
+
+app = FastAPI()
+
+class ModelName(str, Enum):
+    alexnet = "alexnet"
+    resnet = "resnet"
+    lenet = "lenet"
+
+@app.get("/models/{model_name}")
+def get_model(model_name: ModelName):
+    return {"model_name": model_name}
+----
+
+Visit `http://127.0.0.1:8000/models/resnet` to see the response.
+
+== Dependency Injection
+
+FastAPI supports dependency injection for reusability and organization:
+
+[source,python]
+----
+from fastapi import FastAPI, Depends
+
+app = FastAPI()
+
+def common_dependency():
+    return "Common Dependency"
+
+def another_dependency(common: str = Depends(common_dependency)):
+    return f"Another Dependency using {common}"
+
+@app.get("/dependency/")
+def use_dependency(dependency: str = Depends(another_dependency)):
+    return {"dependency_used": dependency}
+----
+
+Visit `http://127.0.0.1:8000/dependency/` to see the response.
+
+== Conclusion
+
+FastAPI is a powerful and modern web framework for building APIs in Python. This tutorial introduced you to the basics of FastAPI, including setting up an app, handling path and query parameters, working with request bodies, using type annotations, enums, and dependency injection.
+
+For further details and advanced features, refer to the official FastAPI documentation (https://fastapi.tiangolo.com/).

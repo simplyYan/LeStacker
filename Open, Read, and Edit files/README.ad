@@ -1,0 +1,73 @@
+= File Manipulation in Python
+
+This tutorial will cover file manipulation in Python, including reading, creating, editing, copying, and moving files. These operations are essential for working with data and managing files within your applications.
+
+== Reading Files
+
+Reading files is crucial for retrieving data. Here's an example of reading a text file:
+
+[source,python]
+----
+with open("example.txt", "r") as file:
+    content = file.read()
+    print(content)
+----
+
+== Creating and Writing to Files
+
+Creating and writing to files allows you to store data. Here's an example of creating a new text file and writing content to it:
+
+[source,python]
+----
+with open("new_file.txt", "w") as file:
+    file.write("Hello, this is a new file.")
+----
+
+== Editing Files
+
+To edit files, read their content, modify it, and then write it back. Here's an example:
+
+[source,python]
+----
+with open("existing_file.txt", "r") as file:
+    content = file.read()
+
+content = content.replace("old", "new")
+
+with open("existing_file.txt", "w") as file:
+    file.write(content)
+----
+
+== Copying Files
+
+Copying files is useful for duplicating data. You can use the `shutil` library for this purpose:
+
+[source,python]
+----
+import shutil
+
+source = "source_file.txt"
+destination = "destination_file.txt"
+
+shutil.copy(source, destination)
+----
+
+== Moving Files
+
+Moving files is akin to cutting and pasting. You can use the `shutil` library for moving files:
+
+[source,python]
+----
+import shutil
+
+source = "source_file.txt"
+destination = "new_location/source_file.txt"
+
+shutil.move(source, destination)
+----
+
+== Conclusion
+
+File manipulation is fundamental in Python programming. This tutorial covered reading, creating, editing, copying, and moving files. By mastering these techniques, you'll be better equipped to work with data and manage files effectively.
+
+For further details and additional functionalities, refer to the official Python documentation (https://docs.python.org/3/tutorial/inputoutput.html#reading-and-writing-files).

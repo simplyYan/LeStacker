@@ -1,0 +1,106 @@
+= Python `zip` Library Tutorial
+
+This tutorial introduces the `zip` library in Python, which provides functions for compressing and decompressing files using the ZIP format.
+
+== Introduction to the `zip` Library
+
+The `zip` library is a built-in module in Python that enables the compression and decompression of files using the popular ZIP format, which bundles one or more files together and optionally compresses them to save space.
+
+== Importing the `zip` Library
+
+To use the `zip` library, import it at the beginning of your script:
+
+[source,python]
+----
+import zipfile
+----
+
+== Creating a Zip File
+
+You can create a new zip file using the `zipfile.ZipFile` class:
+
+[source,python]
+----
+import zipfile
+
+# Create a new zip file
+with zipfile.ZipFile("my_archive.zip", "w") as zipf:
+    zipf.write("file1.txt")
+    zipf.write("file2.txt")
+    # Add more files as needed
+----
+
+== Adding Files to a Zip File
+
+Use the `write()` method to add files to an existing zip file:
+
+[source,python]
+----
+import zipfile
+
+with zipfile.ZipFile("my_archive.zip", "a") as zipf:
+    zipf.write("file3.txt")
+    # Add more files as needed
+----
+
+== Extracting Files from a Zip File
+
+You can extract files from a zip archive using the `extract()` method:
+
+[source,python]
+----
+import zipfile
+
+with zipfile.ZipFile("my_archive.zip", "r") as zipf:
+    zipf.extract("file1.txt", path="extracted_files")
+    # Extract more files as needed
+----
+
+== Extracting All Files
+
+To extract all files from a zip archive, use the `extractall()` method:
+
+[source,python]
+----
+import zipfile
+
+with zipfile.ZipFile("my_archive.zip", "r") as zipf:
+    zipf.extractall(path="extracted_files")
+----
+
+== Getting Information about the Zip File
+
+Use the `infolist()` method to get information about the contents of a zip file:
+
+[source,python]
+----
+import zipfile
+
+with zipfile.ZipFile("my_archive.zip", "r") as zipf:
+    info_list = zipf.infolist()
+    for item in info_list:
+        print("File:", item.filename)
+        print("Size:", item.file_size)
+        print("Compressed Size:", item.compress_size)
+        print("Modified:", item.date_time)
+        print()
+----
+
+== Compression Levels
+
+You can specify the compression level when creating a zip file:
+
+[source,python]
+----
+import zipfile
+
+with zipfile.ZipFile("my_archive.zip", "w", compression=zipfile.ZIP_DEFLATED, compresslevel=6) as zipf:
+    zipf.write("file1.txt")
+    # Add more files as needed
+----
+
+== Conclusion
+
+The `zip` library in Python provides functions for compressing and decompressing files using the ZIP format. This tutorial covered creating a zip file, adding files to a zip file, extracting files from a zip file, getting information about the zip file's contents, specifying compression levels, and more.
+
+For further details and advanced usage, refer to the official Python documentation (https://docs.python.org/3/library/zipfile.html).

@@ -1,0 +1,115 @@
+= Virtual Environment (virtualenv) Tutorial
+
+This tutorial introduces virtualenv, a tool to create isolated Python environments. We'll cover the basics of virtual environments, why they're useful, and how to create and manage them.
+
+== Introduction
+
+Virtual environments allow you to create isolated Python environments for different projects. This helps manage dependencies and avoid conflicts between packages.
+
+== Installing virtualenv
+
+Before we start, make sure you have virtualenv installed:
+
+[source,bash]
+----
+pip install virtualenv
+----
+
+== Creating a Virtual Environment
+
+Create a virtual environment for your project:
+
+[source,bash]
+----
+# Create a new virtual environment named 'myenv'
+virtualenv myenv
+----
+
+== Activating the Virtual Environment
+
+Activate the virtual environment:
+
+On Windows:
+[source,bash]
+----
+myenv\Scripts\activate
+----
+
+On macOS and Linux:
+[source,bash]
+----
+source myenv/bin/activate
+----
+
+You'll see the virtual environment name in your command prompt, indicating that you're working within the isolated environment.
+
+== Installing Packages in the Virtual Environment
+
+Install packages within the virtual environment:
+
+[source,bash]
+----
+pip install package_name
+----
+
+The installed packages will only be available within the activated virtual environment.
+
+== Deactivating the Virtual Environment
+
+To exit the virtual environment, simply run:
+
+[source,bash]
+----
+deactivate
+----
+
+== Using Requirements Files
+
+Requirements files help you recreate the environment on another machine:
+
+Create a `requirements.txt` file:
+[source,bash]
+----
+pip freeze > requirements.txt
+----
+
+Install packages from the `requirements.txt` file:
+[source,bash]
+----
+pip install -r requirements.txt
+----
+
+== Creating Virtual Environments with Different Python Versions
+
+Specify a specific Python version when creating the virtual environment:
+
+[source,bash]
+----
+virtualenv -p python3.8 myenv
+----
+
+== Sharing Virtual Environments
+
+Share the `requirements.txt` file to recreate the environment on another machine.
+
+== Deleting Virtual Environments
+
+Delete a virtual environment's directory to remove it:
+
+On Windows:
+[source,bash]
+----
+rmdir /s /q myenv
+----
+
+On macOS and Linux:
+[source,bash]
+----
+rm -r myenv
+----
+
+== Conclusion
+
+Virtual environments are a powerful tool for managing dependencies and isolating Python environments. This tutorial covered creating, activating, deactivating, using requirements files, working with different Python versions, sharing environments, and deleting virtual environments.
+
+For further details and advanced usage, refer to the virtualenv documentation (https://virtualenv.pypa.io/en/latest/).

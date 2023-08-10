@@ -1,0 +1,116 @@
+= Python `math` Module Tutorial
+
+This tutorial introduces the `math` module in Python, which provides various mathematical functions for numerical computations.
+
+== Introduction to the `math` Module
+
+The `math` module is a built-in module in Python that provides a wide range of mathematical functions and constants for numerical computations.
+
+== Importing the `math` Module
+
+To use the `math` module, import it at the beginning of your script:
+
+[source,python]
+----
+import math
+----
+
+== Basic Mathematical Functions
+
+The `math` module offers a variety of mathematical functions for numerical operations:
+
+[source,python]
+----
+import math
+
+# Trigonometric functions
+angle = math.radians(45)  # Convert degrees to radians
+sin_value = math.sin(angle)
+cos_value = math.cos(angle)
+
+# Exponential and logarithmic functions
+exp_value = math.exp(2.0)
+log_value = math.log(10, 2)  # Logarithm base 2 of 10
+----
+
+== Constants
+
+The `math` module provides useful mathematical constants:
+
+[source,python]
+----
+import math
+
+pi = math.pi
+euler_number = math.e
+golden_ratio = (1 + math.sqrt(5)) / 2
+----
+
+== Rounding and Floating-Point Operations
+
+Perform rounding and manage floating-point numbers:
+
+[source,python]
+----
+import math
+
+# Round a number
+rounded_num = math.floor(3.7)  # Round down to the nearest integer
+
+# Handling floating-point numbers
+is_nan = math.isnan(float("nan"))  # Check if a value is NaN
+is_inf = math.isinf(float("inf"))  # Check if a value is infinity
+----
+
+== Power and Square Root
+
+Calculate powers and square roots:
+
+[source,python]
+----
+import math
+
+# Power
+power_value = math.pow(2, 3)  # 2 raised to the power of 3
+
+# Square root
+square_root = math.sqrt(25)
+----
+
+== Mathematical Constants
+
+The `math` module provides more constants for various mathematical operations:
+
+[source,python]
+----
+import math
+
+# Constants
+tau = 2 * math.pi  # Tau constant (2 * pi)
+inf = math.inf     # Positive infinity
+nan = math.nan     # Not-a-Number (NaN)
+----
+
+== Statistics and Special Functions
+
+The `math` module includes functions for statistical and special mathematical operations:
+
+[source,python]
+----
+import math
+
+# Factorial
+factorial = math.factorial(5)
+
+# Gamma function
+gamma_value = math.gamma(4)
+
+# Bessel function
+bessel_value = math.j0(2.5)
+----
+
+== Conclusion
+
+The `math` module in Python provides a wide range of mathematical functions and constants for numerical computations. This tutorial covered basic mathematical functions, constants, rounding, floating-point operations, power and square root calculations, mathematical constants, and statistics/special functions.
+
+For further details and advanced usage, refer to the official Python documentation (https://docs.python.org/3/library/math.html).

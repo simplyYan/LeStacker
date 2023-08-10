@@ -1,0 +1,163 @@
+= Numpy and Pandas Tutorial
+
+This tutorial provides an in-depth introduction to Numpy and Pandas, two essential libraries in Python for numerical computing and data manipulation.
+
+== Introduction
+
+Numpy and Pandas are widely used libraries in Python for data analysis and manipulation. Numpy provides support for multi-dimensional arrays and mathematical functions, while Pandas introduces data structures like DataFrames for efficient data manipulation.
+
+== Numpy Basics
+
+Numpy provides the fundamental data structure called ndarray (N-dimensional array), which is the building block for numerical computations.
+
+=== Installation
+
+Before we start, ensure you have Numpy installed:
+
+[source,bash]
+----
+pip install numpy
+----
+
+=== Creating Numpy Arrays
+
+Create Numpy arrays to store and manipulate data:
+
+[source,python]
+----
+import numpy as np
+
+# Create a 1D array
+arr1d = np.array([1, 2, 3, 4, 5])
+
+# Create a 2D array
+arr2d = np.array([[1, 2, 3], [4, 5, 6]])
+----
+
+=== Basic Operations
+
+Perform basic operations on Numpy arrays:
+
+[source,python]
+----
+# Element-wise addition
+result = arr1d + 10
+
+# Element-wise multiplication
+result = arr1d * 2
+
+# Dot product
+dot_product = np.dot(arr1d, arr1d)
+----
+
+=== Array Indexing and Slicing
+
+Access and manipulate array elements:
+
+[source,python]
+----
+# Access specific element
+element = arr2d[1, 2]
+
+# Slicing
+sub_array = arr1d[1:4]
+----
+
+=== Mathematical Functions
+
+Numpy offers a variety of mathematical functions:
+
+[source,python]
+----
+# Calculate mean
+mean_value = np.mean(arr1d)
+
+# Calculate standard deviation
+std_deviation = np.std(arr1d)
+----
+
+== Pandas Basics
+
+Pandas is built on top of Numpy and provides data structures like Series and DataFrame for data manipulation and analysis.
+
+=== Installation
+
+Ensure you have Pandas installed:
+
+[source,bash]
+----
+pip install pandas
+----
+
+=== Creating Pandas Series
+
+Create Series to hold one-dimensional labeled data:
+
+[source,python]
+----
+import pandas as pd
+
+# Create a Pandas Series
+data = [10, 20, 30, 40, 50]
+series = pd.Series(data, index=["a", "b", "c", "d", "e"])
+----
+
+=== Creating Pandas DataFrame
+
+Create DataFrames to hold tabular data:
+
+[source,python]
+----
+# Create a Pandas DataFrame
+data = {
+    "Name": ["Alice", "Bob", "Charlie"],
+    "Age": [25, 30, 22],
+    "Country": ["USA", "Canada", "UK"]
+}
+df = pd.DataFrame(data)
+----
+
+=== DataFrame Indexing and Slicing
+
+Access and manipulate DataFrame data:
+
+[source,python]
+----
+# Access a specific column
+names = df["Name"]
+
+# Select specific rows based on condition
+filtered_rows = df[df["Age"] > 25]
+----
+
+=== Data Manipulation
+
+Perform various data manipulation operations on DataFrames:
+
+[source,python]
+----
+# Add a new column
+df["Salary"] = [50000, 60000, 45000]
+
+# Drop a column
+df = df.drop("Country", axis=1)
+----
+
+=== Reading and Writing Data
+
+Read and write data from/to different file formats:
+
+[source,python]
+----
+# Read data from CSV
+csv_data = pd.read_csv("data.csv")
+
+# Write DataFrame to CSV
+df.to_csv("output.csv", index=False)
+----
+
+== Conclusion
+
+Numpy and Pandas are essential libraries for data manipulation and analysis in Python. This tutorial covered creating Numpy arrays, performing operations, indexing, and mathematical functions. It also introduced Pandas, covering Series, DataFrames, data manipulation, and reading/writing data.
+
+For further exploration and advanced usage, refer to the Numpy documentation (https://numpy.org/doc/) and Pandas documentation (https://pandas.pydata.org/docs/).

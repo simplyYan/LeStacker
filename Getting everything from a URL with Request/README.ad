@@ -1,0 +1,91 @@
+= Using the `requests` Library for HTTP Requests
+
+The `requests` library in Python provides a user-friendly way to send HTTP requests and handle responses. It's commonly used for interacting with web services, APIs, and websites. In this guide, we'll cover the essentials of using `requests` to make GET and POST requests, handle responses, manage errors, pass parameters, and more.
+
+== Installation
+
+Before we begin, make sure you have the `requests` library installed. If not, you can install it using the following command:
+
+[source,bash]
+----
+pip install requests
+----
+
+== Making GET Requests
+
+A GET request is used to retrieve data from a server. Here's an example of how to make a simple GET request using `requests`:
+
+[source,python]
+----
+import requests
+
+response = requests.get("https://jsonplaceholder.typicode.com/posts/1")
+data = response.json()
+
+print(data)
+----
+
+== Making POST Requests
+
+A POST request is used to send data to a server, often used for creating or updating resources. Here's an example of making a POST request using `requests`:
+
+[source,python]
+----
+import requests
+
+data = {"title": "New Post", "body": "This is the body of the post", "userId": 1}
+response = requests.post("https://jsonplaceholder.typicode.com/posts", json=data)
+
+print(response.json())
+----
+
+== Handling Response
+
+After sending a request, you'll receive a response from the server. The response includes information such as status codes, headers, and content. Here's how you can handle a response:
+
+[source,python]
+----
+import requests
+
+response = requests.get("https://jsonplaceholder.typicode.com/posts/1")
+
+print("Status Code:", response.status_code)
+print("Headers:", response.headers)
+print("Content:", response.text)
+----
+
+== Error Handling
+
+When working with HTTP requests, errors can occur. It's important to handle these errors gracefully. Here's an example of handling errors using `requests`:
+
+[source,python]
+----
+import requests
+
+try {
+    response = requests.get("https://jsonplaceholder.typicode.com/invalid-url")
+    response.raise_for_status()  // Raises an exception for HTTP errors
+    data = response.json()
+} catch (requests.exceptions.RequestException e) {
+    println("An error occurred:", e)
+}
+----
+
+== Passing Parameters
+
+You can pass parameters to your requests, especially for GET requests with query parameters. Here's an example:
+
+[source,python]
+----
+import requests
+
+params = {"userId": 1}
+response = requests.get("https://jsonplaceholder.typicode.com/posts", params=params)
+
+data = response.json()
+print(data)
+----
+
+== Conclusion
+
+The `requests` library simplifies the process of making HTTP requests in Python. This guide covered the basics of making GET and POST requests, handling responses, error handling, passing parameters, and more. For further details, refer to the official documentation of `requests` (https://docs.python-requests.org/en/latest/).

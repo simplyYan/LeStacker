@@ -1,0 +1,102 @@
+= Beautiful Soup Web Scraping Tutorial
+
+This tutorial introduces Beautiful Soup, a Python library for web scraping. We'll cover the basics of parsing HTML, navigating the parse tree, and extracting data from web pages.
+
+== Installation
+
+Before we begin, make sure you have Beautiful Soup installed:
+
+[source,bash]
+----
+pip install beautifulsoup4
+----
+
+== Parsing HTML
+
+Beautiful Soup helps parse HTML and XML documents:
+
+[source,python]
+----
+from bs4 import BeautifulSoup
+
+html_doc = """
+<html>
+<head>
+<title>Sample Page</title>
+</head>
+<body>
+<p class="content">Hello, Beautiful Soup!</p>
+</body>
+</html>
+"""
+
+soup = BeautifulSoup(html_doc, "html.parser")
+print(soup.prettify())
+----
+
+== Navigating the Parse Tree
+
+Beautiful Soup provides methods to navigate and search the parse tree:
+
+[source,python]
+----
+# Find a specific tag
+tag = soup.find("p", class_="content")
+
+# Extract tag content
+print("Tag Content:", tag.get_text())
+
+# Find all tags of a certain type
+all_paragraphs = soup.find_all("p")
+
+# Navigating the tree
+parent_tag = tag.parent
+siblings = tag.find_next_siblings()
+----
+
+== Extracting Data
+
+Extracting data from tags and attributes:
+
+[source,python]
+----
+# Extract attributes
+print("Class Attribute:", tag["class"])
+
+# Extracting data from links
+link = soup.find("a")
+link_text = link.get_text()
+link_url = link["href"]
+
+# Extracting data from tables
+table = soup.find("table")
+for row in table.find_all("tr"):
+    cells = row.find_all("td")
+    print([cell.get_text() for cell in cells])
+----
+
+== Web Scraping Example
+
+Scrape data from a website:
+
+[source,python]
+----
+import requests
+
+url = "https://example.com"
+response = requests.get(url)
+
+soup = BeautifulSoup(response.content, "html.parser")
+
+# Extract data from the parsed HTML
+# ...
+
+# Print extracted data
+# ...
+----
+
+== Conclusion
+
+Beautiful Soup simplifies the process of web scraping by parsing HTML and XML documents and allowing you to navigate the parse tree to extract data. This tutorial covered the basics of parsing, navigating, and extracting data from web pages.
+
+For advanced usage and more features, refer to the Beautiful Soup documentation (https://www.crummy.com/software/BeautifulSoup/bs4/doc/).

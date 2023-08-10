@@ -1,0 +1,135 @@
+= TextBlob Tutorial
+
+This tutorial introduces TextBlob, a Python library for processing textual data, performing tasks like natural language processing, sentiment analysis, and more.
+
+== Introduction to TextBlob
+
+TextBlob is a simple library built on top of NLTK and Pattern for processing textual data in Python. It provides easy-to-use interfaces for common natural language processing tasks.
+
+== Installation and Setup
+
+To get started with TextBlob, first install it using pip:
+
+[source,shell]
+----
+pip install textblob
+----
+
+Then, download necessary NLTK corpora by running:
+
+[source,python]
+----
+import nltk
+nltk.download("punkt")
+nltk.download("wordnet")
+nltk.download("averaged_perceptron_tagger")
+----
+
+== Creating a TextBlob Object
+
+TextBlob can be used to process and analyze text:
+
+[source,python]
+----
+from textblob import TextBlob
+
+text = "TextBlob is a great library for processing textual data in Python."
+blob = TextBlob(text)
+
+print("Original Text:", blob)
+print("Words:", blob.words)
+print("Sentences:", blob.sentences)
+----
+
+== Tokenization
+
+TextBlob can tokenize text into words and sentences:
+
+[source,python]
+----
+from textblob import TextBlob
+
+text = "Tokenization splits text into individual words or sentences."
+blob = TextBlob(text)
+
+print("Words:", blob.words)
+print("Sentences:", blob.sentences)
+----
+
+== Part-of-Speech Tagging
+
+TextBlob can perform part-of-speech tagging:
+
+[source,python]
+----
+from textblob import TextBlob
+
+text = "Python is a versatile programming language."
+blob = TextBlob(text)
+
+print("Tags:", blob.tags)
+----
+
+== Noun Phrase Extraction
+
+TextBlob can extract noun phrases from text:
+
+[source,python]
+----
+from textblob import TextBlob
+
+text = "Natural language processing is a fascinating field of study."
+blob = TextBlob(text)
+
+print("Noun Phrases:", blob.noun_phrases)
+----
+
+== Sentiment Analysis
+
+TextBlob can perform sentiment analysis on text:
+
+[source,python]
+----
+from textblob import TextBlob
+
+positive_text = "I love this product, it's amazing!"
+negative_text = "This movie was terrible, I hated it."
+
+positive_blob = TextBlob(positive_text)
+negative_blob = TextBlob(negative_text)
+
+print("Positive Sentiment:", positive_blob.sentiment)
+print("Negative Sentiment:", negative_blob.sentiment)
+----
+
+== Translation
+
+TextBlob can translate text between languages:
+
+[source,python]
+----
+from textblob import TextBlob
+
+english_text = "Hello, how are you?"
+spanish_blob = TextBlob(english_text).translate(to="es")
+
+print("Translated to Spanish:", spanish_blob)
+----
+
+== Lemmatization
+
+TextBlob can perform lemmatization to find the base forms of words:
+
+[source,python]
+----
+from textblob import Word
+
+word = Word("running")
+print("Lemma:", word.lemmatize())
+----
+
+== Conclusion
+
+TextBlob is a user-friendly library for processing textual data in Python. This tutorial introduced you to basic TextBlob functionalities, including creating a TextBlob object, tokenization, part-of-speech tagging, noun phrase extraction, sentiment analysis, translation, and lemmatization.
+
+For further details and advanced features, refer to the official TextBlob documentation (https://textblob.readthedocs.io/).

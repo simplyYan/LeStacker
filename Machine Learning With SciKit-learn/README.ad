@@ -1,0 +1,169 @@
+= Basic/Intermediate Machine Learning Tutorial
+
+This tutorial aims to provide a fundamental understanding of machine learning concepts and techniques using Python. We'll cover data preprocessing, model building, training, evaluation, and prediction in more detail.
+
+== Setting Up
+
+Before we start, make sure you have the necessary libraries installed:
+
+[source,bash]
+----
+pip install scikit-learn numpy pandas matplotlib
+----
+
+== Data Preprocessing
+
+Data preprocessing is a critical step in machine learning. It involves cleaning, transforming, and splitting the data.
+
+=== Loading and Exploring Data
+
+Let's load a dataset and explore its structure:
+
+[source,python]
+----
+import pandas as pd
+
+# Load data
+data = pd.read_csv("data.csv")
+
+# Display the first few rows
+print(data.head())
+----
+
+=== Handling Missing Values
+
+Missing values can affect model performance. Here's how to handle them:
+
+[source,python]
+----
+# Check for missing values
+missing_values = data.isnull().sum()
+
+# Fill missing values with mean or median
+data.fillna(data.mean(), inplace=True)
+----
+
+=== Feature Scaling
+
+Many machine learning algorithms perform better with scaled features:
+
+[source,python]
+----
+from sklearn.preprocessing import StandardScaler
+
+scaler = StandardScaler()
+
+# Fit scaler on training data and transform both training and testing data
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+----
+
+=== Categorical Encoding
+
+Convert categorical variables to numerical form:
+
+[source,python]
+----
+from sklearn.preprocessing import LabelEncoder
+
+encoder = LabelEncoder()
+
+# Fit encoder on training data and transform both training and testing data
+X_train_encoded = encoder.fit_transform(X_train["categorical_column"])
+X_test_encoded = encoder.transform(X_test["categorical_column"])
+----
+
+=== Splitting Data
+
+Split data into training and testing sets:
+
+[source,python]
+----
+from sklearn.model_selection import train_test_split
+
+# Split data into features and target
+X = data.drop("target", axis=1)
+y = data["target"]
+
+# Split into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+----
+
+== Building a Model
+
+For this tutorial, let's use a decision tree classifier:
+
+[source,python]
+----
+from sklearn.tree import DecisionTreeClassifier
+
+# Initialize the model
+model = DecisionTreeClassifier()
+
+# Train the model
+model.fit(X_train_scaled, y_train)
+----
+
+== Evaluating the Model
+
+Evaluation helps us understand how well our model performs:
+
+[source,python]
+----
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
+
+# Make predictions
+y_pred = model.predict(X_test_scaled)
+
+# Evaluate accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print("Accuracy:", accuracy)
+
+# Classification report
+print(classification_report(y_test, y_pred))
+
+# Confusion matrix
+print(confusion_matrix(y_test, y_pred))
+----
+
+== Hyperparameter Tuning
+
+Fine-tune model hyperparameters to improve performance:
+
+[source,python]
+----
+from sklearn.model_selection import GridSearchCV
+
+param_grid = {
+    "max_depth": [None, 10, 20, 30],
+    "min_samples_split": [2, 5, 10],
+    "min_samples_leaf": [1, 2, 4]
+}
+
+grid_search = GridSearchCV(DecisionTreeClassifier(), param_grid, cv=5)
+grid_search.fit(X_train_scaled, y_train)
+
+best_params = grid_search.best_params_
+print("Best Parameters:", best_params)
+----
+
+== Making Predictions
+
+With a trained model, we can make predictions on new data:
+
+[source,python]
+----
+new_data = pd.DataFrame(...)  # New data for prediction
+
+# Preprocess new data (scaling, encoding, etc.)
+
+# Predict the target
+new_prediction = model.predict(new_data)
+print("Predicted:", new_prediction)
+----
+
+== Conclusion
+
+Machine learning involves data preprocessing, model building, training, evaluating, and making predictions. This tutorial covered these steps in detail using scikit-learn. To further your knowledge, explore more advanced algorithms, feature engineering, and techniques like cross-validation.
+
+For additional resources, refer to the scikit-learn documentation (https://scikit-learn.org/stable/documentation.html).

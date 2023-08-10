@@ -1,0 +1,116 @@
+= Python `json` Module Tutorial
+
+This tutorial introduces the `json` module in Python, which provides functions to work with JSON (JavaScript Object Notation) data interchange format.
+
+== Introduction to the `json` Module
+
+The `json` module is a built-in module in Python that facilitates encoding and decoding data in JSON format, which is widely used for data interchange between different systems.
+
+== Importing the `json` Module
+
+To use the `json` module, import it at the beginning of your script:
+
+[source,python]
+----
+import json
+----
+
+== Encoding (Serialization) and Decoding (Deserialization)
+
+JSON data can be encoded (serialized) from Python objects and decoded (deserialized) into Python objects using the `json` module's functions.
+
+=== Encoding (Serialization)
+
+Use `json.dumps()` to convert a Python object into a JSON string:
+
+[source,python]
+----
+import json
+
+data = {
+    "name": "John",
+    "age": 30,
+    "city": "New York"
+}
+
+json_string = json.dumps(data)
+print("JSON string:", json_string)
+----
+
+=== Decoding (Deserialization)
+
+Use `json.loads()` to convert a JSON string into a Python object:
+
+[source,python]
+----
+import json
+
+json_string = '{"name": "Alice", "age": 25, "city": "London"}'
+parsed_data = json.loads(json_string)
+print("Parsed data:", parsed_data)
+----
+
+== Working with Files
+
+You can read JSON data from a file or write JSON data to a file using the `json` module's functions.
+
+=== Reading JSON from a File
+
+Read JSON data from a file and parse it into Python objects:
+
+[source,python]
+----
+import json
+
+with open("data.json", "r") as json_file:
+    loaded_data = json.load(json_file)
+    print("Loaded data:", loaded_data)
+----
+
+=== Writing JSON to a File
+
+Write Python objects as JSON data to a file:
+
+[source,python]
+----
+import json
+
+data = {
+    "name": "Bob",
+    "age": 28,
+    "city": "Paris"
+}
+
+with open("output.json", "w") as json_file:
+    json.dump(data, json_file)
+----
+
+== Handling Custom Objects
+
+Use the `default` parameter with the `json.dump()` and `json.dumps()` functions to handle custom object serialization:
+
+[source,python]
+----
+import json
+
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+def custom_serializer(obj):
+    if isinstance(obj, Person):
+        return {"name": obj.name, "age": obj.age}
+    raise TypeError("Object of type 'Person' is not JSON serializable")
+
+person = Person("Charlie", 35)
+
+json_string = json.dumps(person, default=custom_serializer)
+print("Serialized custom object:", json_string)
+----
+
+== Conclusion
+
+The `json` module in Python provides functions for encoding and decoding data in JSON format, a common data interchange format. This tutorial covered encoding (serialization) and decoding (deserialization) of JSON data, working with files, and handling custom objects.
+
+For further details and advanced usage, refer to the official Python documentation (https://docs.python.org/3/library/json.html).

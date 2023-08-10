@@ -1,0 +1,116 @@
+= Flask Web Development Tutorial
+
+This tutorial introduces Flask, a micro web framework for Python. We'll cover the basics of creating a simple web application, routing, templates, and interacting with data.
+
+== Getting Started
+
+Before we begin, make sure you have Flask installed:
+
+[source,bash]
+----
+pip install Flask
+----
+
+== Creating a Simple Web Application
+
+Let's create a simple "Hello, Flask!" web application:
+
+[source,python]
+----
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def hello():
+    return "Hello, Flask!"
+
+if __name__ == "__main__":
+    app.run(debug=True)
+----
+
+== Routing
+
+Flask uses routes to map URLs to functions:
+
+[source,python]
+----
+@app.route("/about")
+def about():
+    return "This is the About page."
+----
+
+== Templates
+
+Templates allow us to separate HTML from Python code:
+
+[source,python]
+----
+from flask import render_template
+
+@app.route("/profile/<username>")
+def profile(username):
+    return render_template("profile.html", name=username)
+----
+
+Create a `templates` folder with a `profile.html` file.
+
+== Request and Forms
+
+Interact with user input through forms:
+
+[source,python]
+----
+from flask import request
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        return f"Logged in as {username}"
+    return render_template("login.html")
+----
+
+Create a `login.html` file in the `templates` folder.
+
+== Static Files
+
+Serve static files like CSS, JS, and images:
+
+[source,python]
+----
+@app.route("/static-example")
+def static_example():
+    return render_template("static_example.html")
+----
+
+Create a `static_example.html` file in the `templates` folder and add static files to a `static` folder.
+
+== Using SQLite
+
+Interact with data using SQLite:
+
+[source,python]
+----
+import sqlite3
+from flask import g
+
+DATABASE = "database.db"
+
+def get_db():
+    if not hasattr(g, "sqlite_db"):
+        g.sqlite_db = sqlite3.connect(DATABASE)
+    return g.sqlite_db
+
+@app.teardown_appcontext
+def close_db(error):
+    if hasattr(g, "sqlite_db"):
+        g.sqlite_db.close()
+----
+
+== Conclusion
+
+Flask is a versatile micro web framework for Python. This tutorial covered creating a basic web application, routing, using templates, handling forms, serving static files, and interacting with SQLite.
+
+For further details and advanced topics, consult the Flask documentation (https://flask.palletsprojects.com/).

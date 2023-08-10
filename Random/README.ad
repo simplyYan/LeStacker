@@ -1,0 +1,91 @@
+= Python Random Module Tutorial
+
+This tutorial introduces the `random` module in Python, which provides tools for generating random numbers and making random selections.
+
+== Introduction to the Random Module
+
+The `random` module in Python allows you to work with random numbers, perform random selections, and create random data.
+
+== Importing the Random Module
+
+To use the `random` module, import it at the beginning of your script:
+
+[source,python]
+----
+import random
+----
+
+== Generating Random Numbers
+
+Generate random integers, floats, and other types of numbers:
+
+[source,python]
+----
+# Generate a random integer between 1 and 10
+random_integer = random.randint(1, 10)
+
+# Generate a random float between 0 and 1
+random_float = random.random()
+
+# Generate a random float within a range
+random_range_float = random.uniform(1.5, 3.0)
+----
+
+== Random Choices
+
+Make random selections from a list of options:
+
+[source,python]
+----
+fruits = ["apple", "banana", "cherry", "date"]
+
+# Choose a random fruit
+random_fruit = random.choice(fruits)
+
+# Choose multiple random fruits without replacement
+random_fruits = random.sample(fruits, 2)
+----
+
+== Shuffling Lists
+
+Shuffle the order of elements in a list:
+
+[source,python]
+----
+cards = ["Ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King"]
+
+# Shuffle the cards
+random.shuffle(cards)
+----
+
+== Seed for Reproducibility
+
+Use a seed to generate the same sequence of random numbers:
+
+[source,python]
+----
+seed_value = 42
+random.seed(seed_value)
+
+# Generate random numbers using the same seed
+random_num_1 = random.random()
+random_num_2 = random.random()
+----
+
+== Random Sampling with Replacement
+
+Generate random samples with replacement:
+
+[source,python]
+----
+population = ["red", "green", "blue", "yellow", "purple"]
+
+# Generate a random sample with replacement
+random_sample = random.choices(population, k=3)
+----
+
+== Conclusion
+
+The `random` module in Python provides tools for generating random numbers, making random selections, and shuffling data. This tutorial covered generating random numbers, making random choices, shuffling lists, using seeds for reproducibility, and generating random samples with replacement.
+
+For further details and advanced features, refer to the official Python documentation (https://docs.python.org/3/library/random.html).

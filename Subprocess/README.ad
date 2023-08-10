@@ -1,0 +1,104 @@
+= Python Subprocess Module Tutorial
+
+This tutorial introduces the `subprocess` module in Python, which allows you to spawn new processes, connect to their input/output/error pipes, and obtain their return codes.
+
+== Introduction to the Subprocess Module
+
+The `subprocess` module provides a way to spawn new processes, connect to their input/output/error pipes, and obtain their return codes. This is useful for running external commands and interacting with the system.
+
+== Running External Commands
+
+You can use `subprocess.run()` to run external commands:
+
+[source,python]
+----
+import subprocess
+
+result = subprocess.run(["ls", "-l"], capture_output=True, text=True)
+print(result.stdout)
+----
+
+== Capturing Output
+
+Use `capture_output=True` to capture the command's output:
+
+[source,python]
+----
+result = subprocess.run(["echo", "Hello, Subprocess"], capture_output=True, text=True)
+print(result.stdout)
+----
+
+== Running Shell Commands
+
+You can run shell commands using the `shell` parameter:
+
+[source,python]
+----
+result = subprocess.run("echo Hello, Shell", capture_output=True, text=True, shell=True)
+print(result.stdout)
+----
+
+== Handling Return Codes
+
+Check the return code to determine if the command succeeded:
+
+[source,python]
+----
+result = subprocess.run(["ls", "nonexistent_file"], capture_output=True, text=True)
+if result.returncode != 0:
+    print("Error:", result.stderr)
+----
+
+== Piping Data
+
+You can pipe data to and from subprocesses:
+
+[source,python]
+----
+input_data = "Hello from input!"
+result = subprocess.run(["grep", "Hello"], input=input_data, capture_output=True, text=True)
+print(result.stdout)
+----
+
+== Handling Errors
+
+Use try-except to handle errors gracefully:
+
+[source,python]
+----
+try:
+    result = subprocess.run(["invalid_command"], capture_output=True, text=True)
+except subprocess.CalledProcessError as e:
+    print("Error:", e.stderr)
+----
+
+== Advanced Usage
+
+For more complex cases, use `subprocess.Popen`:
+
+[source,python]
+----
+import subprocess
+
+process = subprocess.Popen(["ls", "-l"], stdout=subprocess.PIPE, text=True)
+stdout, stderr = process.communicate()
+print(stdout)
+----
+
+== Running Multiple Commands
+
+You can chain commands together using pipes:
+
+[source,python]
+----
+first_command = subprocess.Popen(["ls", "-l"], stdout=subprocess.PIPE, text=True)
+second_command = subprocess.Popen(["grep", "file"], stdin=first_command.stdout, stdout=subprocess.PIPE, text=True)
+stdout, stderr = second_command.communicate()
+print(stdout)
+----
+
+== Conclusion
+
+The `subprocess` module in Python provides powerful tools for running external commands, capturing output, and interacting with system processes. This tutorial covered running commands, capturing output, handling return codes, piping data, handling errors, and advanced usage with `Popen`.
+
+For further details and advanced features, refer to the official Python documentation (https://docs.python.org/3/library/subprocess.html).

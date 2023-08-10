@@ -1,0 +1,219 @@
+= Pygame Tutorial
+
+This tutorial introduces Pygame, a popular library for creating 2D games and multimedia applications in Python.
+
+== Introduction to Pygame
+
+Pygame is a cross-platform set of Python modules designed for writing video games and multimedia applications. It provides functionalities for handling graphics, sounds, input, and more, making it a great choice for creating 2D games.
+
+== Installation and Setup
+
+To get started with Pygame, you need to install it using pip:
+
+[source,shell]
+----
+pip install pygame
+----
+
+== Your First Pygame Application
+
+Create a file named `main.py` and start building your first Pygame application:
+
+[source,python]
+----
+import pygame
+import sys
+
+# Initialize Pygame
+pygame.init()
+
+# Set up display
+screen = pygame.display.set_mode((800, 600))
+pygame.display.set_caption("My Pygame App")
+
+# Game loop
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    screen.fill((255, 255, 255))
+    pygame.display.flip()
+
+pygame.quit()
+sys.exit()
+----
+
+Run the app using `python main.py` and close the window to exit the app.
+
+== Display Basics
+
+Pygame uses the concept of a "surface" for displaying graphics:
+
+[source,python]
+----
+import pygame
+import sys
+
+pygame.init()
+
+# Set up display
+screen = pygame.display.set_mode((800, 600))
+pygame.display.set_caption("Display Basics")
+
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    screen.fill((255, 255, 255))
+    pygame.draw.circle(screen, (0, 0, 255), (400, 300), 50)
+    pygame.display.flip()
+
+pygame.quit()
+sys.exit()
+----
+
+== Events and Input Handling
+
+Pygame allows you to handle events and user input:
+
+[source,python]
+----
+import pygame
+import sys
+
+pygame.init()
+
+screen = pygame.display.set_mode((800, 600))
+pygame.display.set_caption("Input Handling")
+
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                running = False
+
+    screen.fill((255, 255, 255))
+    pygame.display.flip()
+
+pygame.quit()
+sys.exit()
+----
+
+== Sprites and Images
+
+Pygame provides features for loading and displaying images:
+
+[source,python]
+----
+import pygame
+import sys
+
+pygame.init()
+
+screen = pygame.display.set_mode((800, 600))
+pygame.display.set_caption("Sprites and Images")
+
+# Load an image
+image = pygame.image.load("image.png")
+
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    screen.fill((255, 255, 255))
+    screen.blit(image, (300, 200))  # Display the image
+    pygame.display.flip()
+
+pygame.quit()
+sys.exit()
+----
+
+== Sound and Music
+
+Pygame supports playing sounds and music:
+
+[source,python]
+----
+import pygame
+import sys
+
+pygame.init()
+
+screen = pygame.display.set_mode((800, 600))
+pygame.display.set_caption("Sound and Music")
+
+# Load a sound
+sound = pygame.mixer.Sound("sound.wav")
+
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                sound.play()  # Play the sound
+
+    screen.fill((255, 255, 255))
+    pygame.display.flip()
+
+pygame.quit()
+sys.exit()
+----
+
+== Collision Detection
+
+Pygame offers tools for collision detection between objects:
+
+[source,python]
+----
+import pygame
+import sys
+
+pygame.init()
+
+screen = pygame.display.set_mode((800, 600))
+pygame.display.set_caption("Collision Detection")
+
+player = pygame.Rect(350, 500, 50, 50)
+enemy = pygame.Rect(300, 200, 40, 40)
+
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_LEFT]:
+        player.x -= 5
+    if keys[pygame.K_RIGHT]:
+        player.x += 5
+
+    screen.fill((255, 255, 255))
+    pygame.draw.rect(screen, (0, 0, 255), player)
+    pygame.draw.rect(screen, (255, 0, 0), enemy)
+
+    if player.colliderect(enemy):
+        print("Collision!")
+
+    pygame.display.flip()
+
+pygame.quit()
+sys.exit()
+----
+
+== Conclusion
+
+Pygame is a versatile library for creating 2D games and multimedia applications in Python. This tutorial introduced you to the basics of Pygame, including setting up an app, handling events and input, working with graphics and images, playing sounds and music, and collision detection.
+
+For further details and advanced features, refer to the official Pygame documentation (https://www.pygame.org/docs/).

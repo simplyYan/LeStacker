@@ -1,0 +1,105 @@
+= Python `datetime` Module Tutorial
+
+This tutorial introduces the `datetime` module in Python, which provides classes and functions to work with dates, times, and time intervals.
+
+== Introduction to the `datetime` Module
+
+The `datetime` module is a built-in module in Python that offers classes and functions for manipulating dates, times, and time intervals.
+
+== Importing the `datetime` Module
+
+To use the `datetime` module, import it at the beginning of your script:
+
+[source,python]
+----
+import datetime
+----
+
+== Getting the Current Date and Time
+
+The `datetime.datetime.now()` function returns the current date and time:
+
+[source,python]
+----
+import datetime
+
+current_datetime = datetime.datetime.now()
+print("Current date and time:", current_datetime)
+----
+
+== Creating Specific Dates and Times
+
+You can create specific dates and times using the `datetime.datetime()` constructor:
+
+[source,python]
+----
+import datetime
+
+specific_datetime = datetime.datetime(2023, 8, 15, 10, 30, 0)
+print("Specific date and time:", specific_datetime)
+----
+
+== Formatting Dates and Times
+
+Use the `strftime()` method to format dates and times as strings:
+
+[source,python]
+----
+import datetime
+
+formatted_date = current_datetime.strftime("%Y-%m-%d")
+formatted_time = current_datetime.strftime("%H:%M:%S")
+formatted_datetime = current_datetime.strftime("%Y-%m-%d %H:%M:%S")
+
+print("Formatted date:", formatted_date)
+print("Formatted time:", formatted_time)
+print("Formatted datetime:", formatted_datetime)
+----
+
+== Time Intervals and Arithmetic
+
+You can perform arithmetic operations with `datetime.timedelta` objects to represent time intervals:
+
+[source,python]
+----
+import datetime
+
+delta = datetime.timedelta(days=7, hours=3, minutes=15)
+new_datetime = current_datetime + delta
+
+print("New datetime:", new_datetime)
+----
+
+== Parsing Dates and Times
+
+Use the `strptime()` method to parse strings into `datetime` objects:
+
+[source,python]
+----
+import datetime
+
+date_string = "2023-08-15"
+parsed_date = datetime.datetime.strptime(date_string, "%Y-%m-%d")
+
+print("Parsed date:", parsed_date)
+----
+
+== Working with Timezones
+
+The `pytz` library can be used to work with timezones in combination with the `datetime` module:
+
+[source,python]
+----
+import datetime
+import pytz
+
+timezone = pytz.timezone("America/New_York")
+localized_time = current_datetime.astimezone(timezone)
+print("Localized time:", localized_time)
+----
+
+== Conclusion
+
+The `datetime` module in Python provides classes and functions for working with dates, times, and time intervals. This tutorial covered getting the current date and time, creating specific dates and times, formatting dates and times, time intervals and arithmetic, parsing dates and times, and working with timezones using the `pytz` library.
+
+For further details and advanced usage, refer to the official Python documentation (https://docs.python.org/3/library/datetime.html).
