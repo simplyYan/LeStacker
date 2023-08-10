@@ -1,0 +1,251 @@
+= Python Programming Tutorial: From Beginner to Advanced
+
+This comprehensive tutorial will guide you through learning Python programming from the very basics to advanced concepts.
+
+== Table of Contents
+
+1. Introduction to Python
+2. Python Basics
+3. Control Structures
+4. Functions and Modules
+5. Data Structures
+6. Object-Oriented Programming
+7. File Handling
+8. Exception Handling
+9. Regular Expressions
+10. Functional Programming
+11. Debugging and Testing
+12. Python Libraries
+13. Advanced Topics
+
+== 1. Introduction to Python
+
+Python is a high-level, interpreted programming language known for its simplicity and readability. It's widely used in web development, data analysis, artificial intelligence, and more.
+
+== 2. Python Basics
+
+Learn the basics of Python syntax and data types:
+
+[source,python]
+----
+# Your first Python program
+print("Hello, Python!")
+
+# Variables and data types
+age = 25
+name = "John"
+is_student = True
+pi = 3.14159
+----
+
+== 3. Control Structures
+
+Understand control structures like if statements, loops, and more:
+
+[source,python]
+----
+# if statement
+if age >= 18:
+    print("You're an adult.")
+else:
+    print("You're a minor.")
+
+# for loop
+for i in range(5):
+    print(i)
+
+# while loop
+counter = 0
+while counter < 5:
+    print(counter)
+    counter += 1
+----
+
+== 4. Functions and Modules
+
+Learn to create functions and organize your code using modules:
+
+[source,python]
+----
+# Function definition
+def greet(name):
+    return "Hello, " + name + "!"
+
+# Using a module
+import math
+print(math.sqrt(25))
+----
+
+== 5. Data Structures
+
+Explore essential data structures in Python:
+
+[source,python]
+----
+# Lists
+fruits = ["apple", "banana", "orange"]
+
+# Tuples
+coordinates = (10, 20)
+
+# Dictionaries
+person = {"name": "Alice", "age": 30}
+
+# Sets
+unique_numbers = {1, 2, 3}
+----
+
+== 6. Object-Oriented Programming
+
+Learn the basics of OOP with classes and objects:
+
+[source,python]
+----
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def greet(self):
+        return f"Hello, my name is {self.name}."
+
+person = Person("Bob", 25)
+print(person.greet())
+----
+
+== 7. File Handling
+
+Understand reading and writing files in Python:
+
+[source,python]
+----
+# Writing to a file
+with open("output.txt", "w") as file:
+    file.write("Hello, file!")
+
+# Reading from a file
+with open("input.txt", "r") as file:
+    content = file.read()
+    print(content)
+----
+
+== 8. Exception Handling
+
+Learn to handle errors and exceptions gracefully:
+
+[source,python]
+----
+try:
+    result = 10 / 0
+except ZeroDivisionError:
+    print("Error: Division by zero.")
+----
+
+== 9. Regular Expressions
+
+Explore pattern matching with regular expressions:
+
+[source,python]
+----
+import re
+
+text = "Hello, my email is user@example.com."
+pattern = r"\b\w+@\w+\.\w+\b"
+matches = re.findall(pattern, text)
+print(matches)
+----
+
+== 10. Functional Programming
+
+Understand functional programming concepts in Python:
+
+[source,python]
+----
+# Map
+numbers = [1, 2, 3, 4]
+squared = list(map(lambda x: x ** 2, numbers))
+
+# Filter
+even = list(filter(lambda x: x % 2 == 0, numbers))
+----
+
+== 11. Debugging and Testing
+
+Learn to debug and write tests for your code:
+
+[source,python]
+----
+# Debugging
+def divide(a, b):
+    assert b != 0, "Division by zero."
+    return a / b
+
+# Testing
+import unittest
+
+class TestMathOperations(unittest.TestCase):
+    def test_addition(self):
+        self.assertEqual(2 + 2, 4)
+
+if __name__ == "__main__":
+    unittest.main()
+----
+
+== 12. Python Libraries
+
+Explore popular Python libraries for various purposes:
+
+[source,python]
+----
+# Web development: Flask
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/")
+def hello():
+    return "Hello, Flask!"
+
+# Data analysis: Pandas
+import pandas as pd
+data = pd.read_csv("data.csv")
+
+# Machine learning: Scikit-Learn
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+----
+
+== 13. Advanced Topics
+
+Dive into advanced topics like decorators, generators, context managers, and more:
+
+[source,python]
+----
+# Decorators
+def my_decorator(func):
+    def wrapper():
+        print("Something is happening before the function is called.")
+        func()
+        print("Something is happening after the function is called.")
+    return wrapper
+
+@my_decorator
+def say_hello():
+    print("Hello!")
+
+# Generators
+def fibonacci():
+    a, b = 0, 1
+    while True:
+        yield a
+        a, b = b, a + b
+
+# Context managers
+with open("file.txt", "r") as file:
+    content = file.read()
+----
+
+== Conclusion
+
+Congratulations! You've completed a comprehensive Python programming tutorial, covering everything from the basics to advanced concepts. Continue to explore and build projects to further enhance your Python skills.
+
+For further details and in-depth learning, refer to the official Python documentation (https://docs.python.org/3/).
