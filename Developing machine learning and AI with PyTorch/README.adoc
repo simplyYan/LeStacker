@@ -1,0 +1,178 @@
+= PyTorch Tutorial: Machine Learning, AI, and Automation
+
+This comprehensive tutorial introduces PyTorch, covering essential topics for machine learning, AI, and automation.
+
+== Introduction to PyTorch
+
+PyTorch is a popular open-source machine learning library for building and training neural networks. It provides dynamic computation graphs, making it versatile and user-friendly.
+
+== Installation and Setup
+
+To get started with PyTorch, install it using pip:
+
+[source,shell]
+----
+pip install torch
+----
+
+== Tensors and Computation
+
+Learn about tensors, the fundamental building blocks in PyTorch:
+
+[source,python]
+----
+import torch
+
+# Create tensors
+tensor1 = torch.tensor([1, 2, 3])
+tensor2 = torch.FloatTensor([4, 5, 6])
+
+# Perform operations on tensors
+result = tensor1 + tensor2
+----
+
+== Neural Networks
+
+Explore creating neural networks using PyTorch's `nn` module:
+
+[source,python]
+----
+import torch.nn as nn
+
+class SimpleNN(nn.Module):
+    def __init__(self):
+        super(SimpleNN, self).__init__()
+        self.fc1 = nn.Linear(in_features=10, out_features=5)
+        self.fc2 = nn.Linear(in_features=5, out_features=2)
+
+    def forward(self, x):
+        x = torch.relu(self.fc1(x))
+        x = self.fc2(x)
+        return x
+
+model = SimpleNN()
+----
+
+== Data Loading and Preprocessing
+
+Load and preprocess data using PyTorch's `DataLoader` and `transforms`:
+
+[source,python]
+----
+from torchvision import transforms
+from torch.utils.data import DataLoader
+
+# Define transformations
+data_transform = transforms.Compose([
+    transforms.Resize(224),
+    transforms.ToTensor()
+])
+
+# Load data using DataLoader
+train_dataset = YourDataset(root="data/train", transform=data_transform)
+train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
+----
+
+== Loss Functions and Optimizers
+
+Utilize loss functions and optimizers for training neural networks:
+
+[source,python]
+----
+criterion = nn.CrossEntropyLoss()
+optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
+
+for epoch in range(num_epochs):
+    for inputs, labels in train_loader:
+        optimizer.zero_grad()
+        outputs = model(inputs)
+        loss = criterion(outputs, labels)
+        loss.backward()
+        optimizer.step()
+----
+
+== Transfer Learning
+
+Leverage pre-trained models for transfer learning:
+
+[source,python]
+----
+from torchvision import models
+
+pretrained_model = models.resnet18(pretrained=True)
+pretrained_model.fc = nn.Linear(pretrained_model.fc.in_features, num_classes)
+----
+
+== Saving and Loading Models
+
+Save and load trained models using PyTorch:
+
+[source,python]
+----
+# Save model
+torch.save(model.state_dict(), "model.pth")
+
+# Load model
+model.load_state_dict(torch.load("model.pth"))
+model.eval()
+----
+
+== GPU Acceleration
+
+Utilize GPU acceleration for faster training:
+
+[source,python]
+----
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+model.to(device)
+
+for inputs, labels in train_loader:
+    inputs, labels = inputs.to(device), labels.to(device)
+    # ...
+----
+
+== Creating a Simple AI Application
+
+Create a simple AI application using a trained model:
+
+[source,python]
+----
+image = Image.open("image.jpg")
+transform = data_transform(image).unsqueeze(0)
+transform = transform.to(device)
+
+with torch.no_grad():
+    output = model(transform)
+
+predicted_class = torch.argmax(output).item()
+print(f"Predicted class: {predicted_class}")
+----
+
+== Automation with PyTorch
+
+Automate tasks using PyTorch, such as image recognition and text generation:
+
+[source,python]
+----
+# Automate image recognition
+def recognize_image(image_path):
+    image = Image.open(image_path)
+    transform = data_transform(image).unsqueeze(0)
+    transform = transform.to(device)
+
+    with torch.no_grad():
+        output = model(transform)
+
+    predicted_class = torch.argmax(output).item()
+    return predicted_class
+
+# Automate text generation
+def generate_text(prompt):
+    # ...
+----
+
+== Conclusion
+
+PyTorch is a powerful library for machine learning, AI, and automation tasks in Python. This tutorial covered essential topics, including tensors and computation, neural networks, data loading and preprocessing, loss functions and optimizers, transfer learning, saving and loading models, GPU acceleration, creating AI applications, and automation.
+
+For further details and advanced features, refer to the official PyTorch documentation (https://pytorch.org/docs/stable/index.html).

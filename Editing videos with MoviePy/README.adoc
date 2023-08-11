@@ -1,0 +1,141 @@
+= MoviePy Tutorial
+
+This tutorial introduces MoviePy, a Python library for video editing and manipulation.
+
+== Introduction to MoviePy
+
+MoviePy is a powerful library for video editing and manipulation in Python. It provides an easy-to-use interface for creating and editing videos.
+
+== Installation and Setup
+
+To get started with MoviePy, install it using pip:
+
+[source,shell]
+----
+pip install moviepy
+----
+
+== Creating and Saving Videos
+
+Learn to create and save videos using MoviePy:
+
+[source,python]
+----
+from moviepy.editor import VideoClip
+
+# Create a video clip
+def make_frame(t):
+    return t * 0.02  # Example animation
+
+clip = VideoClip(make_frame, duration=5)
+
+# Save the video
+clip.write_videofile("output.mp4", codec="libx264")
+----
+
+== Video Editing: Concatenation and Subclips
+
+Explore video editing functions in MoviePy:
+
+[source,python]
+----
+from moviepy.editor import VideoFileClip
+
+# Load video clips
+clip1 = VideoFileClip("video1.mp4").subclip(5, 10)
+clip2 = VideoFileClip("video2.mp4").subclip(0, 5)
+
+# Concatenate clips
+final_clip = concatenate_videoclips([clip1, clip2])
+
+# Save the final video
+final_clip.write_videofile("edited_video.mp4")
+----
+
+== Video Effects and Transitions
+
+Apply effects and transitions to video clips:
+
+[source,python]
+----
+from moviepy.video.fx import vfx
+
+# Load a video clip
+clip = VideoFileClip("video.mp4")
+
+# Apply a rotation effect
+rotated_clip = vfx.rotate(clip, angle=45)
+
+# Apply a crossfade transition
+transition_clip = vfx.crossfadein(rotated_clip, fade_duration=1)
+
+# Save the edited video
+transition_clip.write_videofile("edited_video.mp4")
+----
+
+== Adding Text and Audio
+
+Add text and audio to video clips:
+
+[source,python]
+----
+from moviepy.editor import TextClip, AudioFileClip
+
+# Create a text clip
+text = TextClip("Hello, MoviePy!", fontsize=48, color="white")
+text_clip = text.set_duration(5)
+
+# Load an audio clip
+audio = AudioFileClip("audio.mp3").subclip(10, 15)
+
+# Combine video and audio
+final_clip = text_clip.set_audio(audio)
+
+# Save the final video
+final_clip.write_videofile("text_video.mp4")
+----
+
+== Image and Video Composition
+
+Compose videos with images and video clips:
+
+[source,python]
+----
+from moviepy.editor import ImageClip
+
+# Load an image
+image = ImageClip("image.jpg", duration=10)
+
+# Load a video clip
+video_clip = VideoFileClip("video.mp4").subclip(5, 15)
+
+# Overlay image on video
+final_clip = CompositeVideoClip([video_clip, image.set_duration(10).resize(video_clip.size)])
+final_clip.write_videofile("composite_video.mp4")
+----
+
+== Video Speed and Time Manipulation
+
+Adjust video speed and manipulate time:
+
+[source,python]
+----
+# Load a video clip
+clip = VideoFileClip("video.mp4")
+
+# Slow down the video
+slow_clip = clip.fx(vfx.speedx, 0.5)
+
+# Speed up the video
+fast_clip = clip.fx(vfx.speedx, 2)
+
+# Save the edited videos
+slow_clip.write_videofile("slow_video.mp4")
+fast_clip.write_videofile("fast_video.mp4")
+----
+
+== Conclusion
+
+MoviePy is a versatile library for video editing and manipulation in Python. This tutorial introduced you to basic MoviePy functionalities, including creating and saving videos, video editing operations like concatenation, effects, transitions, adding text and audio, image and video composition, adjusting video speed, and time manipulation.
+
+For further details and advanced features, refer to the official MoviePy documentation (https://zulko.github.io/moviepy/).

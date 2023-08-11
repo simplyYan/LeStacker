@@ -1,0 +1,141 @@
+= FluidSynth Tutorial
+
+This tutorial introduces FluidSynth, a library for sound synthesis, which allows you to create music from sound fonts in Python.
+
+== Introduction to FluidSynth
+
+FluidSynth is a software synthesizer that provides a way to create music using sound fonts. It converts MIDI data into audio output, allowing you to produce music programmatically.
+
+== Installation and Setup
+
+To get started with FluidSynth, you need to install it and load a sound font:
+
+[source,shell]
+----
+# Install FluidSynth
+pip install pyfluidsynth
+----
+
+You also need a sound font file (SF2) that contains instrument samples. You can find sound fonts online, or you can use the default sound font that comes with FluidSynth.
+
+== Basic Sound Synthesis
+
+Learn to perform basic sound synthesis using FluidSynth:
+
+[source,python]
+----
+import fluidsynth
+
+# Create a FluidSynth instance
+fs = fluidsynth.Synth()
+
+# Load a sound font
+sf2_path = "soundfont.sf2"
+sf_id = fs.sfload(sf2_path)
+
+# Set the sound font
+fs.program_select(0, sf_id, 0, 0)
+
+# Generate audio
+midi_data = "C5 D5 E5 F5 G5 A5 B5 C6"
+for note in midi_data.split():
+    fs.noteon(0, fluidsynth.midi_to_note(note), 127)
+    fs.noteoff(0, fluidsynth.midi_to_note(note))
+----
+
+== Loading MIDI Files
+
+Load and play MIDI files using FluidSynth:
+
+[source,python]
+----
+# Load a MIDI file
+midi_file = "song.mid"
+
+# Create a MIDI sequencer
+seq = fluidsynth.Sequencer()
+
+# Load the MIDI file into the sequencer
+seq.load(midi_file)
+
+# Connect the sequencer to the FluidSynth instance
+seq.sync(fs)
+
+# Start playback
+seq.play()
+----
+
+== Customizing Sound
+
+Customize sound by adjusting parameters using FluidSynth:
+
+[source,python]
+----
+# Set reverb and chorus levels
+fs.fx(0, fluidsynth.FX_REVERB, 0.2)
+fs.fx(0, fluidsynth.FX_CHORUS, 0.5)
+
+# Change the instrument
+fs.program_change(0, sf_id, 10)  # Select instrument 10
+
+# Adjust volume and pan
+fs.cc(0, fluidsynth.CC_VOLUME, 100)  # Set volume to 100
+fs.cc(0, fluidsynth.CC_PAN, 64)      # Set pan to center
+----
+
+== Creating Custom Sounds
+
+Create custom sounds by combining different instruments and effects:
+
+[source,python]
+----
+# Load additional sound fonts
+sf_id2 = fs.sfload("soundfont2.sf2")
+
+# Set instruments from different sound fonts
+fs.program_select(0, sf_id, 0, 0)
+fs.program_select(1, sf_id2, 0, 0)
+
+# Play a chord with different instruments
+fs.noteon(0, fluidsynth.midi_to_note("C4"), 127)
+fs.noteon(1, fluidsynth.midi_to_note("E4"), 127)
+fs.noteon(2, fluidsynth.midi_to_note("G4"), 127)
+fs.noteoff(0, fluidsynth.midi_to_note("C4"))
+fs.noteoff(1, fluidsynth.midi_to_note("E4"))
+fs.noteoff(2, fluidsynth.midi_to_note("G4"))
+----
+
+== SoundFont Management
+
+Manage sound fonts and presets using FluidSynth:
+
+[source,python]
+----
+# List available presets
+presets = fs.channel_info(0).get("presets")
+
+# Change to a specific preset
+preset_index = 5
+fs.program_change(0, sf_id, preset_index)
+----
+
+== Real-Time Sound Generation
+
+Generate real-time sound using FluidSynth:
+
+[source,python]
+----
+import time
+
+# Play a scale in real-time
+for note in range(60, 72):  # MIDI notes 60 to 71 (C4 to B4)
+    fs.noteon(0, note, 80)
+    time.sleep(0.5)
+    fs.noteoff(0, note)
+----
+
+== Conclusion
+
+FluidSynth is a versatile library for sound synthesis in Python. This tutorial introduced you to basic FluidSynth functionalities, including basic sound synthesis, loading and playing MIDI files, customizing sound, creating custom sounds, managing sound fonts and presets, and generating real-time sound.
+
+For further details and advanced features, refer to the official FluidSynth documentation (http://www.fluidsynth.org/api/).

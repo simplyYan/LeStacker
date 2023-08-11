@@ -1,0 +1,145 @@
+= Panda3D Tutorial
+
+This tutorial introduces Panda3D, a powerful 3D engine for creating games and interactive simulations in Python.
+
+== Introduction to Panda3D
+
+Panda3D is an open-source 3D engine that provides tools and libraries for creating real-time 3D applications, including games and interactive simulations.
+
+== Installation and Setup
+
+To get started with Panda3D, you can install it using pip:
+
+[source,shell]
+----
+pip install panda3d
+----
+
+You can also download the Panda3D SDK from the official website (https://www.panda3d.org/download/sdk-1-10-9/).
+
+== Creating a Simple Scene
+
+Let's create a simple scene using Panda3D:
+
+[source,python]
+----
+from panda3d.core import Point3
+from direct.showbase.ShowBase import ShowBase
+from direct.task import Task
+
+class MyApp(ShowBase):
+    def __init__(self):
+        ShowBase.__init__(self)
+
+        # Load a model
+        self.environ = self.loader.loadModel("models/environment")
+        self.environ.reparentTo(self.render)
+
+        # Position the model
+        self.environ.setScale(0.1)
+        self.environ.setPos(0, 0, 0)
+
+app = MyApp()
+app.run()
+----
+
+== Basic Scene Manipulation
+
+Explore basic scene manipulation in Panda3D:
+
+[source,python]
+----
+# Rotate an object
+self.environ.setHpr(90, 0, 0)
+
+# Translate an object
+self.environ.setPos(0, 0, 10)
+
+# Scale an object
+self.environ.setScale(0.5, 0.5, 0.5)
+----
+
+== Keyboard and Mouse Input
+
+Handle keyboard and mouse input in Panda3D:
+
+[source,python]
+----
+def move_left(self):
+    self.environ.setX(self.environ.getX() - 1)
+
+def move_right(self):
+    self.environ.setX(self.environ.getX() + 1)
+
+self.accept("arrow_left", self.move_left)
+self.accept("arrow_right", self.move_right)
+----
+
+== Collision Detection
+
+Implement collision detection in Panda3D:
+
+[source,python]
+----
+from panda3d.core import CollisionTraverser, CollisionHandlerQueue, CollisionNode, CollisionSphere
+
+# Create collision objects
+collision_traverser = CollisionTraverser()
+collision_handler = CollisionHandlerQueue()
+
+collision_sphere = CollisionSphere(0, 0, 0, 1)
+collision_node = CollisionNode("object")
+collision_node.add_solid(collision_sphere)
+
+self.environ.attach_new_node(collision_node)
+
+# Add collision node to traverser
+collision_traverser.add_collider(collision_node, collision_handler)
+----
+
+== Particles and Effects
+
+Add particles and effects to your scene:
+
+[source,python]
+----
+from panda3d.particles import Particles, ParticleEffect
+
+# Create particles
+particles = Particles()
+particles.set_birth_rate(0.2)
+# ... configure particles ...
+
+# Create particle effect
+particle_effect = ParticleEffect()
+particle_effect.add_particles(particles)
+
+particle_effect.start(parent=self.environ, render_parent=self.render)
+----
+
+== Sound and Music
+
+Incorporate sound and music into your Panda3D application:
+
+[source,python]
+----
+from panda3d.core import AudioSound
+
+# Load sound
+sound = loader.load_sfx("sound.ogg")
+
+# Play sound
+sound.play()
+
+# Load music
+music = loader.load_music("music.mp3")
+
+# Play music
+music.play()
+----
+
+== Conclusion
+
+Panda3D is a powerful framework for creating 3D games and interactive simulations using Python. This tutorial introduced you to basic Panda3D functionalities, including creating a simple scene, scene manipulation, keyboard and mouse input, collision detection, particles and effects, and incorporating sound and music.
+
+For further details and advanced features, refer to the official Panda3D documentation (https://docs.panda3d.org/1.10/python/index).

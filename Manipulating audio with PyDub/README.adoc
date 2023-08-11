@@ -1,0 +1,134 @@
+= PyDub Tutorial
+
+This tutorial introduces PyDub, a user-friendly library for audio manipulation and editing in Python.
+
+== Introduction to PyDub
+
+PyDub is a versatile library for audio manipulation tasks in Python. It provides an easy-to-use interface for working with audio files, including editing, slicing, concatenating, applying effects, and more.
+
+== Installation and Setup
+
+To get started with PyDub, install it using pip:
+
+[source,shell]
+----
+pip install pydub
+----
+
+== Opening and Saving Audio
+
+Learn to open and save audio files using PyDub:
+
+[source,python]
+----
+from pydub import AudioSegment
+
+# Open an audio file
+audio = AudioSegment.from_file("audio.mp3")
+
+# Save the audio in different format
+audio.export("output.wav", format="wav")
+----
+
+== Basic Audio Manipulations
+
+Explore basic audio manipulation functions in PyDub:
+
+[source,python]
+----
+# Adjust audio volume
+louder_audio = audio + 10
+
+# Trim audio
+trimmed_audio = audio[5000:10000]
+
+# Concatenate audio
+combined_audio = audio1 + audio2
+----
+
+== Audio Effects
+
+Apply various audio effects using PyDub:
+
+[source,python]
+----
+# Apply audio fade in/out
+fade_in_audio = audio.fade_in(2000)
+fade_out_audio = audio.fade_out(2000)
+
+# Apply high-pass filter
+high_pass_audio = audio.high_pass_filter(1000)
+----
+
+== Audio Slicing and Concatenation
+
+Slice and concatenate audio segments with PyDub:
+
+[source,python]
+----
+# Slice audio
+segment1 = audio[:5000]
+segment2 = audio[5000:10000]
+
+# Concatenate segments
+concatenated_audio = segment1 + segment2
+----
+
+== Exporting Audio
+
+Export audio with different options in PyDub:
+
+[source,python]
+----
+# Export audio with different bit rate
+audio.export("output.mp3", format="mp3", bitrate="192k")
+
+# Export audio with different sample rate
+audio.export("output.wav", format="wav", parameters=["-ar", "44100"])
+----
+
+== Changing Audio Format
+
+Change audio format and parameters using PyDub:
+
+[source,python]
+----
+# Convert audio to different format
+converted_audio = audio.export(format="ogg")
+
+# Convert stereo audio to mono
+mono_audio = audio.set_channels(1)
+----
+
+== Audio Playback
+
+Play back audio in PyDub using system default player:
+
+[source,python]
+----
+# Play audio
+audio.export("temp.wav", format="wav")
+audio.play()
+----
+
+== Audio Analysis
+
+Perform basic audio analysis with PyDub:
+
+[source,python]
+----
+# Calculate audio duration
+duration = len(audio) / 1000  # in seconds
+
+# Get audio channels
+channels = audio.channels
+
+# Get audio sample rate
+sample_rate = audio.frame_rate
+----
+
+== Conclusion
+
+PyDub is a user-friendly library for audio manipulation and editing tasks in Python. This tutorial introduced you to basic PyDub functionalities, including opening and saving audio, audio manipulation, applying effects, slicing and concatenation, exporting audio, changing audio format, audio playback, and basic audio analysis.
+
+For further details and advanced features, refer to the official PyDub documentation (https://pydub.com/).
