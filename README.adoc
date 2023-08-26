@@ -1,0 +1,42 @@
+= LeStacker: Python Tutorials Repository
+
+Welcome to the LeStacker repository! This repository contains a collection of comprehensive tutorials on various Python libraries and topics, designed to help you learn and master different aspects of Python programming.
+
+== Getting Started
+
+To get started with these tutorials, follow these steps:
+
+:: I RECOMMEND USING IT ON GITHUB ITSELF, BROWSING THE TUTORIALS/FOLDERS IN THE REPOSITORY ITSELF, WITHOUT CLONING ::
+
+1. Clone the repository to your local machine:
+[source,shell]
+----
+$ git clone https://github.com/SwankyNoob/LeStacker.git
+----
+
+2. Navigate to the specific tutorial you want to explore:
+[source,shell]
+----
+$ cd LeStacker
+$ cd TutorialDirectoryName
+----
+
+3. Open the tutorial files using your preferred text editor or viewer to access the AsciiDoc content and learn about the topic.
+
+== Contribution
+
+Contributions to this repository are welcome! If you have a tutorial or topic you'd like to contribute, feel free to create a pull request. Please make sure your contributions adhere to the existing format and follow best practices.
+
+== License
+
+This repository and its contents are released under the [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/legalcode).
+
+== Contact
+
+For any questions or inquiries, you can reach out to the author, SwankyNoob, via GitHub or email.
+
+== Acknowledgments
+
+Special thanks to the open-source community, which makes learning and sharing knowledge possible.
+
+Thank you for using LeStacker as a resource to enhance your Python programming skills!
