@@ -1,4 +1,4 @@
-= LeStacker: Python Tutorials Repository
+= 👋 LeStacker: Python Tutorials Repository
 
 Welcome to the LeStacker repository! This repository contains a collection of comprehensive tutorials on various Python libraries and topics, designed to help you learn and master different aspects of Python programming.
 
