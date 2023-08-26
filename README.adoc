@@ -11,7 +11,7 @@ To get started with these tutorials, follow these steps:
 1. Clone the repository to your local machine:
 [source,shell]
 ----
-$ git clone https://github.com/SwankyNoob/LeStacker.git
+$ git clone https://github.com/NervousGroove/LeStacker.git
 ----
 
 2. Navigate to the specific tutorial you want to explore:
