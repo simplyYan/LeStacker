@@ -1,0 +1,96 @@
+= Python hashlib Module Tutorial
+
+This comprehensive tutorial provides an in-depth understanding of the `hashlib` module in Python, covering hash functions, secure hashing, message digests, and practical examples.
+
+== Introduction to the hashlib Module
+
+The `hashlib` module in Python provides functionalities for working with hash functions, which are used to convert data into fixed-size values (hash codes). Hash functions play a critical role in various applications, including security, data integrity verification, and password storage.
+
+== Hash Functions
+
+The `hashlib` module supports various hash functions, such as MD5, SHA-1, SHA-256, and more. Hash functions take an input (message) and produce a fixed-size hash value.
+
+[source,python]
+----
+import hashlib
+
+message = "Hello, hashlib!"
+
+# Using MD5 hash function
+md5_hash = hashlib.md5(message.encode()).hexdigest()
+print("MD5 Hash:", md5_hash)
+
+# Using SHA-256 hash function
+sha256_hash = hashlib.sha256(message.encode()).hexdigest()
+print("SHA-256 Hash:", sha256_hash)
+----
+
+== Secure Hashing
+
+Secure hashing is crucial for data integrity and password storage. Salting is often used to enhance security.
+
+[source,python]
+----
+import hashlib
+import os
+
+password = "mysecretpassword"
+salt = os.urandom(16)
+
+# Salting and hashing a password
+salted_password = salt + password.encode()
+hashed_password = hashlib.sha256(salted_password).hexdigest()
+
+print("Hashed Password:", hashed_password)
+print("Salt:", salt.hex())
+----
+
+== Message Digests
+
+Message digests are hash values produced from the entire content of a file or data.
+
+[source,python]
+----
+import hashlib
+
+# Calculate message digest of a file
+def calculate_digest(filename):
+    sha256_hash = hashlib.sha256()
+    with open(filename, "rb") as file:
+        while chunk := file.read(8192):
+            sha256_hash.update(chunk)
+    return sha256_hash.hexdigest()
+
+file_digest = calculate_digest("example_file.txt")
+print("File Digest:", file_digest)
+----
+
+== Using Hashlib for Password Hashing
+
+Using a strong hash function and salting is important for securely storing passwords.
+
+[source,python]
+----
+import hashlib
+import os
+
+def hash_password(password, salt=None):
+    if salt is None:
+        salt = os.urandom(16)
+    salted_password = salt + password.encode()
+    hashed_password = hashlib.sha256(salted_password).hexdigest()
+    return hashed_password, salt
+
+password = "mysecretpassword"
+hashed_password, salt = hash_password(password)
+print("Hashed Password:", hashed_password)
+print("Salt:", salt.hex())
+----
+
+== Conclusion
+
+The `hashlib` module in Python is a powerful tool for working with hash functions, message digests, and secure password hashing. This tutorial covered key features of the `hashlib` module, including hash functions, secure hashing with salting, message digests, and password hashing.
+
+By mastering the `hashlib` module, you can ensure data integrity, enhance security, and implement effective password storage mechanisms in your applications.
+
+For further exploration and advanced applications, refer to the official Python documentation (https://docs.python.org/3/library/hashlib.html).

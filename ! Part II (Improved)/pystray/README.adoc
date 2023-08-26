@@ -1,0 +1,75 @@
+= Creating a System Tray Application with PyStray
+
+This tutorial provides an introduction to using the `pystray` library in Python to create a system tray application that runs in the background and can be accessed from the system tray.
+
+== Introduction to PyStray
+
+`pystray` is a Python library that simplifies creating system tray applications. It allows you to run your Python script in the background and provide a user-friendly interface accessible through the system tray.
+
+== Installing PyStray
+
+Before you start using `pystray`, you need to install it.
+
+[source,python]
+----
+# Install pystray using pip
+$ pip install pystray
+----
+
+== Creating a Simple System Tray Application
+
+Let's create a basic example of a system tray application using `pystray`.
+
+[source,python]
+----
+import pystray
+from PIL import Image
+
+# Create a basic system tray icon
+def on_exit(icon, item):
+    icon.stop()
+
+# Load an image to use as the icon
+image = Image.open("icon.png")
+
+# Create a menu
+menu = pystray.Menu(pystray.MenuItem("Exit", on_exit))
+
+# Create a system tray icon
+icon = pystray.Icon("name", image, "Title", menu)
+
+# Run the system tray application
+icon.run()
+----
+
+== Adding Functionality
+
+You can add custom functionality to your system tray application.
+
+[source,python]
+----
+import pystray
+from PIL import Image
+
+def on_exit(icon, item):
+    icon.stop()
+
+def show_message(icon, item):
+    icon.notify("System Tray Example", "Hello from the system tray!")
+
+image = Image.open("icon.png")
+menu = pystray.Menu(
+    pystray.MenuItem("Show Message", show_message),
+    pystray.MenuItem("Exit", on_exit)
+)
+icon = pystray.Icon("name", image, "Title", menu)
+icon.run()
+----
+
+== Conclusion
+
+The `pystray` library simplifies the process of creating system tray applications in Python. This tutorial covered key features of `pystray`, including creating a simple system tray icon, adding custom functionality through the menu, and running the application in the background.
+
+By mastering `pystray`, you can develop user-friendly applications that run in the background and are easily accessible from the system tray, making it a valuable tool for creating notification and control applications.
+
+For further exploration and advanced applications, refer to the official `pystray` documentation (https://github.com/moses-palmer/pystray).

@@ -1,0 +1,125 @@
+= SQLAlchemy Tutorial
+
+This comprehensive tutorial provides an in-depth understanding of the SQLAlchemy library in Python, covering database connectivity, object-relational mapping (ORM), querying, and practical examples.
+
+== Introduction to SQLAlchemy
+
+SQLAlchemy is a popular Python library that provides a high-level interface for interacting with relational databases. It allows you to work with databases using Python objects and provides a powerful ORM system for mapping database tables to Python classes.
+
+== Connecting to a Database
+
+To connect to a database using SQLAlchemy, you need to create a database engine.
+
+[source,python]
+----
+from sqlalchemy import create_engine
+
+# Create a SQLite database engine
+engine = create_engine('sqlite:///example.db')
+----
+
+== Defining a Data Model
+
+SQLAlchemy allows you to define Python classes that represent database tables.
+
+[source,python]
+----
+from sqlalchemy import Column, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
+
+Base = declarative_base()
+
+class User(Base):
+    __tablename__ = 'users'
+
+    id = Column(Integer, primary_key=True)
+    username = Column(String)
+    email = Column(String)
+
+    def __repr__(self):
+        return f"<User(id={self.id}, username={self.username}, email={self.email})>"
+----
+
+== Creating Tables
+
+After defining the data model, you can create the corresponding database table.
+
+[source,python]
+----
+Base.metadata.create_all(engine)
+----
+
+== Adding Data
+
+You can add data to the database by creating instances of the defined classes.
+
+[source,python]
+----
+from sqlalchemy.orm import sessionmaker
+
+Session = sessionmaker(bind=engine)
+session = Session()
+
+new_user = User(username='john_doe', email='john@example.com')
+session.add(new_user)
+session.commit()
+----
+
+== Querying Data
+
+SQLAlchemy offers powerful querying capabilities using Python syntax.
+
+[source,python]
+----
+# Query all users
+users = session.query(User).all()
+for user in users:
+    print(user)
+----
+
+== Filtering and Ordering
+
+You can filter and order query results using SQLAlchemy.
+
+[source,python]
+----
+# Query users with a specific email domain
+users_with_gmail = session.query(User).filter(User.email.like('%@gmail.com')).all()
+
+# Query users ordered by username
+ordered_users = session.query(User).order_by(User.username).all()
+----
+
+== Updating Data
+
+Updating data is straightforward using SQLAlchemy.
+
+[source,python]
+----
+# Update a user's email
+user_to_update = session.query(User).filter_by(username='john_doe').first()
+if user_to_update:
+    user_to_update.email = 'new_email@example.com'
+    session.commit()
+----
+
+== Deleting Data
+
+You can delete data using SQLAlchemy as well.
+
+[source,python]
+----
+# Delete a user
+user_to_delete = session.query(User).filter_by(username='john_doe').first()
+if user_to_delete:
+    session.delete(user_to_delete)
+    session.commit()
+----
+
+== Conclusion
+
+SQLAlchemy is a powerful and flexible library for working with relational databases in Python. This tutorial covered key features of SQLAlchemy, including connecting to a database, defining data models, creating tables, adding, querying, filtering, ordering, updating, and deleting data.
+
+By mastering SQLAlchemy, you gain the ability to seamlessly integrate database operations into your Python applications, making it an essential tool for database-driven projects.
+
+For further exploration and advanced applications, refer to the official SQLAlchemy documentation (https://docs.sqlalchemy.org/).

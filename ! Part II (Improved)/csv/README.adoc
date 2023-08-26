@@ -1,0 +1,120 @@
+= Python csv Module Tutorial
+
+This comprehensive tutorial provides an in-depth understanding of the `csv` module in Python, covering reading and writing CSV files, custom delimiters, handling headers, and practical examples.
+
+== Introduction to the csv Module
+
+The `csv` module in Python facilitates the reading and writing of Comma-Separated Values (CSV) files, a widely used format for storing structured data. The module offers functionalities to work with CSV files, including reading, writing, and customizing the handling of delimiters and headers.
+
+== Reading CSV Files
+
+The `csv` module's `reader()` function allows you to read data from a CSV file.
+
+[source,python]
+----
+import csv
+
+# Reading data from a CSV file
+with open('data.csv', 'r') as csv_file:
+    csv_reader = csv.reader(csv_file)
+    for row in csv_reader:
+        print(row)
+----
+
+== Writing CSV Files
+
+The `csv` module's `writer()` function enables you to write data to a CSV file.
+
+[source,python]
+----
+import csv
+
+# Writing data to a CSV file
+data = [
+    ['Name', 'Age', 'City'],
+    ['Alice', 25, 'New York'],
+    ['Bob', 30, 'Los Angeles']
+]
+
+with open('output.csv', 'w', newline='') as csv_file:
+    csv_writer = csv.writer(csv_file)
+    for row in data:
+        csv_writer.writerow(row)
+----
+
+== Custom Delimiters and Quote Characters
+
+The `csv` module allows you to specify custom delimiters and quote characters when reading or writing CSV files.
+
+[source,python]
+----
+import csv
+
+# Reading CSV file with a different delimiter
+with open('data.tsv', 'r') as tsv_file:
+    tsv_reader = csv.reader(tsv_file, delimiter='\t')
+    for row in tsv_reader:
+        print(row)
+----
+
+[source,python]
+----
+import csv
+
+# Writing CSV file with a different delimiter and quote character
+data = [
+    ['Name', 'Age', 'City'],
+    ['Alice', 25, 'New York'],
+    ['Bob', 30, 'Los Angeles']
+]
+
+with open('output_pipe.csv', 'w', newline='') as csv_file:
+    csv_writer = csv.writer(csv_file, delimiter='|', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+    for row in data:
+        csv_writer.writerow(row)
+----
+
+== Handling Headers
+
+The `csv` module provides functionality to work with CSV headers.
+
+[source,python]
+----
+import csv
+
+# Reading CSV file with headers
+with open('data_with_headers.csv', 'r') as csv_file:
+    csv_reader = csv.DictReader(csv_file)
+    for row in csv_reader:
+        print(row['Name'], row['Age'], row['City'])
+----
+
+== Writing CSV Files with Headers
+
+When writing CSV files with headers, you can use `DictWriter` to specify headers and easily write dictionaries as rows.
+
+[source,python]
+----
+import csv
+
+# Writing CSV file with headers
+data = [
+    {'Name': 'Alice', 'Age': 25, 'City': 'New York'},
+    {'Name': 'Bob', 'Age': 30, 'City': 'Los Angeles'}
+]
+
+with open('output_with_headers.csv', 'w', newline='') as csv_file:
+    fieldnames = ['Name', 'Age', 'City']
+    csv_writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+    csv_writer.writeheader()
+    for row in data:
+        csv_writer.writerow(row)
+----
+
+== Conclusion
+
+The `csv` module in Python provides an efficient way to work with CSV files, from reading and writing data to customizing delimiters and handling headers. This tutorial covered key features of the `csv` module, including reading CSV files with `reader()`, writing CSV files with `writer()`, custom delimiters and quote characters, reading CSV files with headers using `DictReader`, and writing CSV files with headers using `DictWriter`.
+
+By mastering the `csv` module, you can seamlessly integrate CSV file handling into your Python applications, making it a valuable tool for data processing and manipulation.
+
+For further exploration and advanced applications, refer to the official Python documentation (https://docs.python.org/3/library/csv.html).

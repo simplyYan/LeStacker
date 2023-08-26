@@ -1,0 +1,108 @@
+= Python time Module Tutorial
+
+This comprehensive tutorial provides an in-depth understanding of the `time` module in Python, covering time-related functions, measuring time intervals, formatting time, and practical examples.
+
+== Introduction to the time Module
+
+The `time` module in Python provides functionalities for working with time-related operations, such as measuring time intervals, formatting time values, and performing time-related calculations. It's particularly useful for tasks involving timing, benchmarking, and scheduling.
+
+== Measuring Time Intervals
+
+The `time` module's `time()` function returns the current time in seconds since the epoch (January 1, 1970).
+
+[source,python]
+----
+import time
+
+# Get the current time in seconds
+current_time = time.time()
+print("Current time in seconds:", current_time)
+----
+
+The `time` module's `sleep()` function pauses the execution of the program for a specified number of seconds.
+
+[source,python]
+----
+import time
+
+print("Start")
+time.sleep(2)  # Pause for 2 seconds
+print("End")
+----
+
+== Formatting Time
+
+The `time` module's `ctime()` function returns a string representing the current time in a readable format.
+
+[source,python]
+----
+import time
+
+# Get the current time in readable format
+current_readable_time = time.ctime()
+print("Current readable time:", current_readable_time)
+----
+
+The `time` module's `strftime()` function allows you to format a specific time according to a custom format string.
+
+[source,python]
+----
+import time
+
+# Format current time as a custom string
+formatted_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+print("Formatted time:", formatted_time)
+----
+
+== Measuring Execution Time
+
+The `time` module is often used for measuring the execution time of code segments using the `time()` function.
+
+[source,python]
+----
+import time
+
+start_time = time.time()
+
+# Perform some computation
+for _ in range(1000000):
+    pass
+
+end_time = time.time()
+execution_time = end_time - start_time
+print(f"Execution time: {execution_time:.4f} seconds")
+----
+
+== Timing Decorator
+
+You can create a timing decorator using the `time` module to measure the execution time of functions.
+
+[source,python]
+----
+import time
+
+def timing_decorator(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        execution_time = end_time - start_time
+        print(f"{func.__name__} executed in {execution_time:.4f} seconds")
+        return result
+    return wrapper
+
+@timing_decorator
+def some_function():
+    # Perform some computation
+    time.sleep(1)
+
+some_function()
+----
+
+== Conclusion
+
+The `time` module in Python is a valuable tool for working with time-related operations, such as measuring time intervals, formatting time values, and benchmarking code execution. This tutorial covered key features of the `time` module, including measuring time intervals using `time()` and `sleep()`, formatting time with `ctime()` and `strftime()`, measuring code execution time, and creating a timing decorator.
+
+By mastering the `time` module, you can effectively handle time-related tasks in your Python programs, from basic timing to more advanced benchmarking and profiling.
+
+For further exploration and advanced applications, refer to the official Python documentation (https://docs.python.org/3/library/time.html).

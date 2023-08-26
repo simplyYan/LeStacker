@@ -1,0 +1,112 @@
+= SQLite in Python Tutorial
+
+This comprehensive tutorial provides an in-depth understanding of using the SQLite database in Python, covering database creation, table management, data insertion, querying, and practical examples.
+
+== Introduction to SQLite in Python
+
+SQLite is a lightweight, serverless, and self-contained database engine that's widely used for local storage and small-scale applications. It's particularly well-suited for embedding in Python applications due to its simplicity and ease of use.
+
+== Creating a Database
+
+To work with SQLite in Python, you need to import the `sqlite3` module and connect to a database.
+
+[source,python]
+----
+import sqlite3
+
+# Connect to or create a database
+conn = sqlite3.connect('my_database.db')
+----
+
+== Creating Tables
+
+SQLite allows you to create tables for storing structured data.
+
+[source,python]
+----
+# Create a cursor
+cursor = conn.cursor()
+
+# Create a users table
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY,
+    username TEXT,
+    email TEXT
+)
+''')
+----
+
+== Inserting Data
+
+You can insert data into tables using SQL statements.
+
+[source,python]
+----
+# Insert data into the users table
+cursor.execute('''
+INSERT INTO users (username, email)
+VALUES (?, ?)
+''', ('john_doe', 'john@example.com'))
+
+# Commit the changes
+conn.commit()
+----
+
+== Querying Data
+
+SQLite supports querying data using SQL statements.
+
+[source,python]
+----
+# Query all users
+cursor.execute('SELECT * FROM users')
+users = cursor.fetchall()
+for user in users:
+    print(user)
+----
+
+== Filtering and Ordering
+
+You can filter and order query results using SQL statements.
+
+[source,python]
+----
+# Query users with a specific email domain
+cursor.execute('SELECT * FROM users WHERE email LIKE ?', ('%@gmail.com',))
+gmail_users = cursor.fetchall()
+
+# Query users ordered by username
+cursor.execute('SELECT * FROM users ORDER BY username')
+ordered_users = cursor.fetchall()
+----
+
+== Updating Data
+
+Updating data is achieved through SQL statements.
+
+[source,python]
+----
+# Update a user's email
+cursor.execute('UPDATE users SET email = ? WHERE username = ?', ('new_email@example.com', 'john_doe'))
+conn.commit()
+----
+
+== Deleting Data
+
+You can delete data using SQL statements as well.
+
+[source,python]
+----
+# Delete a user
+cursor.execute('DELETE FROM users WHERE username = ?', ('john_doe',))
+conn.commit()
+----
+
+== Conclusion
+
+SQLite is a powerful choice for local storage and small-scale applications in Python. This tutorial covered key features of SQLite in Python, including database creation, table management, data insertion, querying, filtering, ordering, updating, and deleting data.
+
+By mastering SQLite, you gain the ability to efficiently manage structured data within your Python applications, making it an excellent tool for projects that require lightweight and embedded database functionality.
+
+For further exploration and advanced applications, refer to the official SQLite documentation (https://www.sqlite.org/docs.html).

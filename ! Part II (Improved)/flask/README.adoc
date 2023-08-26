@@ -1,0 +1,119 @@
+= Flask Framework Tutorial
+
+This comprehensive tutorial provides an in-depth understanding of the Flask framework in Python, covering web application development, routing, templates, forms, and practical examples.
+
+== Introduction to Flask
+
+Flask is a micro web framework for Python that allows you to build web applications quickly and efficiently. It is designed to be lightweight and easy to use, making it a popular choice for developing web applications of various sizes.
+
+== Getting Started
+
+To start using Flask, you need to install it and set up a basic application structure.
+
+[source,python]
+----
+# Install Flask
+$ pip install Flask
+----
+
+[source,python]
+----
+from flask import Flask
+
+app = Flask(__name__)
+----
+
+== Routing
+
+Flask uses routing to map URLs to view functions.
+
+[source,python]
+----
+@app.route('/')
+def hello():
+    return 'Hello, Flask!'
+----
+
+== Templates
+
+Templates help you create dynamic HTML pages by rendering data.
+
+[source,python]
+----
+from flask import render_template
+
+@app.route('/user/<username>')
+def user_profile(username):
+    user_data = get_user_data(username)  # Assume a function to fetch user data
+    return render_template('user_profile.html', user=user_data)
+----
+
+== Forms
+
+Flask-WTF allows you to easily create and process forms.
+
+[source,python]
+----
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired
+
+class UserProfileForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+----
+
+== Handling Form Submissions
+
+You can process form submissions using view functions.
+
+[source,python]
+----
+@app.route('/edit_profile', methods=['GET', 'POST'])
+def edit_profile():
+    form = UserProfileForm()
+
+    if form.validate_on_submit():
+        update_user_profile(form.username.data, form.email.data)
+        flash('Profile updated successfully!')
+        return redirect(url_for('user_profile', username=form.username.data))
+
+    return render_template('edit_profile.html', form=form)
+----
+
+== Static Files
+
+Flask allows you to serve static files easily.
+
+[source,python]
+----
+# In your templates, use:
+# <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+# In your Flask app:
+from flask import send_from_directory
+
+@app.route('/static/<path:filename>')
+def serve_static(filename):
+    return send_from_directory('static', filename)
+----
+
+== Error Handling
+
+You can customize error pages for different HTTP status codes.
+
+[source,python]
+----
+@app.errorhandler(404)
+def not_found(error):
+    return render_template('404.html'), 404
+----
+
+== Conclusion
+
+Flask is a versatile and lightweight web framework that simplifies web application development in Python. This tutorial covered key features of Flask, including setting up an application, routing, using templates, working with forms, handling form submissions, serving static files, and customizing error pages.
+
+By mastering Flask, you can efficiently develop web applications of various scales, making it a valuable tool for building and deploying web-based projects.
+
+For further exploration and advanced applications, refer to the official Flask documentation (https://flask.palletsprojects.com/).

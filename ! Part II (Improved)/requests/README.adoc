@@ -1,0 +1,119 @@
+= Python Requests Library Tutorial
+
+This comprehensive tutorial provides an in-depth understanding of the `requests` library in Python, covering HTTP requests, response handling, authentication, sessions, and practical examples.
+
+== Introduction to the requests Library
+
+The `requests` library in Python simplifies making HTTP requests, interacting with APIs, and working with web resources. It provides an easy-to-use interface for sending HTTP requests and processing responses.
+
+== Making GET Requests
+
+The `requests` library enables you to make GET requests to retrieve information from web resources.
+
+[source,python]
+----
+import requests
+
+# Making a GET request
+response = requests.get('https://api.example.com/data')
+print("Response:", response.text)
+print("Status Code:", response.status_code)
+----
+
+== Handling JSON Responses
+
+When working with APIs, you often receive JSON responses that you can parse using the `json()` method.
+
+[source,python]
+----
+import requests
+
+# Making a GET request and parsing JSON response
+response = requests.get('https://api.example.com/data')
+data = response.json()
+print("Parsed JSON:", data)
+----
+
+== Passing Query Parameters
+
+You can pass query parameters with your requests using the `params` parameter.
+
+[source,python]
+----
+import requests
+
+# Making a GET request with query parameters
+params = {'page': 1, 'limit': 10}
+response = requests.get('https://api.example.com/posts', params=params)
+print("Response:", response.text)
+----
+
+== Making POST Requests
+
+The `requests` library also supports making POST requests to send data to web resources.
+
+[source,python]
+----
+import requests
+
+# Making a POST request with data
+data = {'username': 'john_doe', 'email': 'john@example.com'}
+response = requests.post('https://api.example.com/users', data=data)
+print("Response:", response.text)
+----
+
+== Authentication
+
+You can handle authentication using the `auth` parameter.
+
+[source,python]
+----
+import requests
+from requests.auth import HTTPBasicAuth
+
+# Making a GET request with basic authentication
+auth = HTTPBasicAuth('username', 'password')
+response = requests.get('https://api.example.com/secure-data', auth=auth)
+print("Response:", response.text)
+----
+
+== Sessions
+
+Sessions help maintain state across multiple requests, such as handling cookies and other data.
+
+[source,python]
+----
+import requests
+
+# Creating a session
+session = requests.Session()
+
+# Making requests using the session
+response = session.get('https://api.example.com/login')
+response = session.post('https://api.example.com/process', data={'key': 'value'})
+print("Response:", response.text)
+----
+
+== Error Handling
+
+The `requests` library provides built-in error handling for HTTP errors.
+
+[source,python]
+----
+import requests
+
+# Handling errors
+try:
+    response = requests.get('https://api.example.com/nonexistent')
+    response.raise_for_status()  # Raises an exception if the response status code indicates an error
+except requests.exceptions.HTTPError as e:
+    print("HTTP Error:", e)
+----
+
+== Conclusion
+
+The `requests` library in Python simplifies working with HTTP requests and APIs. This tutorial covered key features of the `requests` library, including making GET and POST requests, handling JSON responses, passing query parameters, authentication, using sessions, and error handling.
+
+By mastering the `requests` library, you can seamlessly integrate web requests and API interactions into your Python applications, making it an essential tool for data retrieval and communication with web resources.
+
+For further exploration and advanced applications, refer to the official `requests` documentation (https://docs.python-requests.org/).

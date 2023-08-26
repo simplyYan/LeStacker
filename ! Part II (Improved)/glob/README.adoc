@@ -1,0 +1,90 @@
+= Python glob Module Tutorial
+
+This comprehensive tutorial provides an in-depth understanding of the `glob` module in Python, covering file and directory matching, wildcard patterns, recursive searches, and practical examples.
+
+== Introduction to the glob Module
+
+The `glob` module in Python is used for file and directory matching using wildcard patterns. It simplifies the process of searching for files that match specific criteria and allows you to perform various operations on the matched files.
+
+== Basic File Matching
+
+The `glob` module provides the `glob()` function, which allows you to search for files using wildcard patterns.
+
+[source,python]
+----
+import glob
+
+# Search for all Python files in the current directory
+python_files = glob.glob('*.py')
+print("Python Files:", python_files)
+----
+
+== Recursive Searching
+
+You can perform recursive searches in subdirectories using the `**` wildcard.
+
+[source,python]
+----
+# Search for all text files in subdirectories
+text_files = glob.glob('**/*.txt', recursive=True)
+print("Text Files:", text_files)
+----
+
+== Wildcard Patterns
+
+The `glob` module supports various wildcard patterns.
+
+- `*` matches any number of characters (including none).
+- `?` matches a single character.
+- `[]` matches a set of characters.
+- `[!...]` matches any character not in the set.
+
+[source,python]
+----
+# Search for files with specific extensions
+csv_files = glob.glob('*.csv')
+json_files = glob.glob('*.json')
+print("CSV Files:", csv_files)
+print("JSON Files:", json_files)
+----
+
+== Filtering by Directory
+
+You can filter the search by specifying a directory path.
+
+[source,python]
+----
+# Search for XML files in a specific directory
+xml_files = glob.glob('/path/to/files/*.xml')
+print("XML Files:", xml_files)
+----
+
+== Using glob for Directory Matching
+
+The `glob` module is not limited to files; it can also be used for directory matching.
+
+[source,python]
+----
+# Search for subdirectories
+subdirectories = glob.glob('*/')
+print("Subdirectories:", subdirectories)
+----
+
+== Combining Wildcards and Extensions
+
+You can combine wildcard patterns with specific extensions.
+
+[source,python]
+----
+# Search for HTML and XML files in subdirectories
+html_and_xml_files = glob.glob('**/*.{html,xml}', recursive=True)
+print("HTML and XML Files:", html_and_xml_files)
+----
+
+== Conclusion
+
+The `glob` module in Python simplifies file and directory matching using wildcard patterns. This tutorial covered key features of the `glob` module, including basic file matching, recursive searches, wildcard patterns, directory filtering, and combining wildcards with extensions.
+
+By mastering the `glob` module, you can efficiently search for and manipulate files and directories in your Python applications, making it a valuable tool for tasks that involve file handling and organization.
+
+For further exploration and advanced applications, refer to the official Python documentation (https://docs.python.org/3/library/glob.html).

@@ -1,0 +1,199 @@
+= Python os Module Tutorial
+
+This comprehensive tutorial provides a detailed understanding of the `os` module in Python, covering file and directory operations, environment variables, process management, and more.
+
+== Introduction to the os Module
+
+The `os` module is an essential component of Python's standard library, allowing developers to interact with the underlying operating system. It offers functions and tools for various tasks, making it a cornerstone for managing files, directories, processes, and more.
+
+== File and Directory Operations
+
+The `os` module provides functions to work with files and directories, offering convenience and efficiency in managing filesystem-related tasks.
+
+[source,python]
+----
+import os
+
+# Get the current working directory
+current_dir = os.getcwd()
+
+# List contents of a directory
+contents = os.listdir(current_dir)
+
+# Create a new directory
+new_dir = os.path.join(current_dir, "new_directory")
+os.mkdir(new_dir)
+
+# Rename a file or directory
+old_name = "old_name.txt"
+new_name = "new_name.txt"
+os.rename(old_name, new_name)
+
+# Delete a file or directory
+file_to_delete = "file_to_delete.txt"
+directory_to_delete = "directory_to_delete"
+os.remove(file_to_delete)
+os.rmdir(directory_to_delete)
+----
+
+== Path Manipulation
+
+The `os.path` submodule offers path manipulation functions to ensure compatibility across different operating systems.
+
+[source,python]
+----
+file_path = os.path.join("folder", "file.txt")
+absolute_path = os.path.abspath(file_path)
+basename = os.path.basename(file_path)
+dirname = os.path.dirname(file_path)
+normalized_path = os.path.normpath(file_path)
+----
+
+== Environment Variables
+
+Working with environment variables is crucial for configuration management. The `os` module simplifies access and manipulation of environment variables.
+
+[source,python]
+----
+# Get the value of an environment variable
+username = os.environ.get("USERNAME")
+
+# Set an environment variable
+os.environ["MY_VARIABLE"] = "value"
+
+# Remove an environment variable
+if "MY_VARIABLE" in os.environ:
+    del os.environ["MY_VARIABLE"]
+----
+
+== File and Directory Information
+
+Understanding file and directory attributes is essential. The `os` module provides functions to retrieve file information.
+
+[source,python]
+----
+file_size = os.path.getsize("file.txt")
+is_file = os.path.isfile("file.txt")
+is_directory = os.path.isdir("folder")
+file_stats = os.stat("file.txt")
+----
+
+== Working with Paths
+
+Manipulating file paths effectively ensures compatibility across different operating systems. The `os.path` submodule offers functions to validate and manipulate paths.
+
+[source,python]
+----
+path = "/path/to/file.txt"
+
+# Check if a path exists
+exists = os.path.exists(path)
+
+# Check if a path is a file or directory
+is_file = os.path.isfile(path)
+is_directory = os.path.isdir(path)
+
+# Normalize a path
+normalized_path = os.path.normpath(path)
+----
+
+== Running Shell Commands
+
+Executing shell commands from within Python can be powerful for automation and integration. The `os` module provides ways to run shell commands and capture their output.
+
+[source,python]
+----
+command = "ls -l"
+result = os.popen(command).read()
+
+# Run a command and capture output
+output = os.system("ls -l")
+
+# Run a command and capture output as a list
+output_list = os.popen("ls").readlines()
+----
+
+== Process Management
+
+Managing processes is essential for orchestrating system tasks and integrations. The `os` module offers functions to interact with processes.
+
+[source,python]
+----
+# Run an external program
+program_path = "/path/to/program"
+os.system(program_path)
+
+# Spawn a new process
+os.spawnlp(os.P_NOWAIT, "python", "python", "script.py")
+
+# Get the process ID
+process_id = os.getpid()
+process_group_id = os.getpgrp()
+----
+
+== File Permissions
+
+Understanding and managing file permissions is crucial for securing sensitive data and files. The `os` module provides functions for accessing and modifying permissions.
+
+[source,python]
+----
+# Get file permissions
+permissions = os.stat("file.txt").st_mode
+
+# Change file permissions
+new_permissions = permissions | stat.S_IEXEC
+os.chmod("file.txt", new_permissions)
+----
+
+== Handling Signals
+
+The `os` module also enables handling signals, allowing you to react to various events and conditions.
+
+[source,python]
+----
+import signal
+
+# Handle a specific signal
+def handle_signal(signum, frame):
+    print(f"Received signal {signum}")
+
+# Register signal handler
+signal.signal(signal.SIGINT, handle_signal)
+----
+
+== Directory Tree Walk
+
+The ability to traverse directory trees is crucial for tasks such as searching for specific files or performing batch operations. The `os` module provides a way to walk through directories.
+
+[source,python]
+----
+def print_directory_contents(path):
+    for root, dirs, files in os.walk(path):
+        print(f"Current directory: {root}")
+        print("Subdirectories:", dirs)
+        print("Files:", files)
+----
+
+== File Operations
+
+The `os` module extends its capabilities to various file operations, including copying and moving files.
+
+[source,python]
+----
+source_file = "source.txt"
+destination_file = "destination.txt"
+
+# Copy a file
+os.copy(source_file, destination_file)
+
+# Move a file
+os.rename(source_file, destination_file)
+----
+
+== Conclusion
+
+The `os` module is a versatile and indispensable part of Python's standard library, empowering developers to interact with the operating system at various levels. This tutorial covered a comprehensive range of features within the `os` module, including file and directory operations, path manipulation, environment variables, file and directory information, working with paths, running shell commands, process management, file permissions, signal handling, directory tree traversal, and file operations.
+
+By understanding and mastering the `os` module, you'll be equipped with powerful tools to manage various aspects of your applications across different operating systems.
+
+For further exploration and advanced applications, refer to the official Python documentation (https://docs.python.org/3/library/os.html).

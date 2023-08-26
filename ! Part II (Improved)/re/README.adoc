@@ -1,0 +1,120 @@
+= Python re Module Tutorial
+
+This comprehensive tutorial provides an in-depth understanding of the `re` module in Python, covering regular expressions, pattern matching, substitution, and practical examples.
+
+== Introduction to the re Module
+
+The `re` module in Python provides support for working with regular expressions, which are powerful tools for pattern matching and text manipulation. Regular expressions allow you to search for and manipulate strings based on specific patterns, making them invaluable for tasks like text parsing, validation, and extraction.
+
+== Basic Pattern Matching
+
+The `re` module's `match()` function enables you to check if a string matches a specific pattern.
+
+[source,python]
+----
+import re
+
+# Check if a string starts with "Hello"
+pattern = r"^Hello"
+string = "Hello, world!"
+match_result = re.match(pattern, string)
+
+if match_result:
+    print("Pattern matched!")
+else:
+    print("Pattern not found.")
+----
+
+== Searching for Patterns
+
+The `re` module's `search()` function searches for a specific pattern within a string.
+
+[source,python]
+----
+import re
+
+# Search for a date pattern
+pattern = r"\d{2}/\d{2}/\d{4}"
+text = "Today's date is 08/09/2023"
+search_result = re.search(pattern, text)
+
+if search_result:
+    print("Date found:", search_result.group())
+else:
+    print("Date not found.")
+----
+
+== Finding All Matches
+
+The `re` module's `findall()` function returns all occurrences of a pattern within a string.
+
+[source,python]
+----
+import re
+
+# Find all mentions of "Python"
+pattern = r"Python"
+text = "Python is a popular programming language. Python is versatile."
+matches = re.findall(pattern, text)
+
+print("Occurrences of 'Python':", matches)
+----
+
+== Substitution with Patterns
+
+The `re` module's `sub()` function allows you to replace matches with specific text.
+
+[source,python]
+----
+import re
+
+# Replace occurrences of "good" with "excellent"
+pattern = r"good"
+text = "This movie is good, and the food is good too."
+modified_text = re.sub(pattern, "excellent", text)
+
+print("Modified text:", modified_text)
+----
+
+== Grouping and Capturing
+
+Regular expressions allow you to group and capture parts of a match using parentheses.
+
+[source,python]
+----
+import re
+
+# Extract date components
+pattern = r"(\d{2})/(\d{2})/(\d{4})"
+text = "Date: 08/09/2023"
+match = re.search(pattern, text)
+
+if match:
+    day, month, year = match.groups()
+    print(f"Day: {day}, Month: {month}, Year: {year}")
+----
+
+== Flags and Modifiers
+
+The `re` module supports flags and modifiers to modify the behavior of regular expression patterns.
+
+[source,python]
+----
+import re
+
+# Case-insensitive search
+pattern = r"python"
+text = "Python is a programming language."
+match = re.search(pattern, text, re.IGNORECASE)
+
+if match:
+    print("Match found:", match.group())
+----
+
+== Conclusion
+
+The `re` module in Python provides a robust framework for working with regular expressions, enabling you to perform sophisticated pattern matching, extraction, and manipulation tasks. This tutorial covered key features of the `re` module, including basic pattern matching, searching, finding all matches, substitution, grouping, capturing, and using flags and modifiers.
+
+By mastering regular expressions with the `re` module, you gain the ability to handle complex text processing tasks, making it a valuable skill in various programming scenarios.
+
+For further exploration and advanced applications, refer to the official Python documentation (https://docs.python.org/3/library/re.html).

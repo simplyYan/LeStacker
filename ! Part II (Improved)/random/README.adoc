@@ -1,0 +1,99 @@
+= Python random Module Tutorial
+
+This comprehensive tutorial provides an in-depth understanding of the `random` module in Python, covering random number generation, sampling, shuffling, and practical examples.
+
+== Introduction to the random Module
+
+The `random` module in Python enables you to generate random numbers, perform random sampling, and shuffle sequences. It's a crucial tool for simulations, games, and various scenarios that involve randomness.
+
+== Generating Random Numbers
+
+The `random` module's `random()` function generates a random floating-point number in the range [0.0, 1.0).
+
+[source,python]
+----
+import random
+
+# Generate a random number between 0 and 1
+random_number = random.random()
+print("Random number:", random_number)
+----
+
+The `random` module's `randint()` function generates a random integer within a specified range.
+
+[source,python]
+----
+import random
+
+# Generate a random integer between 1 and 10 (inclusive)
+random_integer = random.randint(1, 10)
+print("Random integer:", random_integer)
+----
+
+== Random Sampling
+
+The `random` module supports random sampling from sequences, such as lists or strings.
+
+[source,python]
+----
+import random
+
+colors = ["red", "green", "blue", "yellow"]
+random_color = random.choice(colors)
+print("Random color:", random_color)
+
+random_sample = random.sample(colors, 2)
+print("Random sample:", random_sample)
+----
+
+== Shuffling Sequences
+
+The `random` module's `shuffle()` function shuffles the elements of a sequence in place.
+
+[source,python]
+----
+import random
+
+deck = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+random.shuffle(deck)
+print("Shuffled deck:", deck)
+----
+
+== Generating Random Floating-Point Numbers
+
+The `random` module provides various functions for generating random floating-point numbers within specific ranges.
+
+[source,python]
+----
+import random
+
+# Generate a random floating-point number between 5.0 and 10.0
+random_float = random.uniform(5.0, 10.0)
+print("Random float:", random_float)
+----
+
+== Seeding Randomness
+
+You can use the `random` module's `seed()` function to initialize the random number generator with a specific seed.
+
+[source,python]
+----
+import random
+
+seed_value = 42
+random.seed(seed_value)
+
+random_number_1 = random.random()
+random_number_2 = random.random()
+
+print("Random number 1:", random_number_1)
+print("Random number 2:", random_number_2)
+----
+
+== Conclusion
+
+The `random` module in Python is a versatile tool for generating randomness in your programs, from simple random number generation to more complex tasks like sampling and shuffling. This tutorial covered key features of the `random` module, including generating random numbers, random sampling, shuffling sequences, generating random floating-point numbers, and seeding randomness.
+
+By mastering the `random` module, you can add an element of unpredictability to your applications, making them more engaging and dynamic.
+
+For further exploration and advanced applications, refer to the official Python documentation (https://docs.python.org/3/library/random.html).

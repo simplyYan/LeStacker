@@ -1,0 +1,110 @@
+= Python math Module Tutorial
+
+This comprehensive tutorial provides an in-depth understanding of the `math` module in Python, covering its various mathematical functions, constants, and practical examples.
+
+== Introduction to the math Module
+
+The `math` module is a crucial component of Python's standard library, providing access to various mathematical operations and functions. It's particularly useful for tasks involving mathematical calculations, ranging from basic arithmetic to more advanced trigonometry and logarithmic operations.
+
+== Basic Arithmetic Operations
+
+The `math` module offers functions for common arithmetic operations, such as addition, subtraction, multiplication, and division.
+
+[source,python]
+----
+import math
+
+# Basic arithmetic operations
+addition = math.add(5, 3)
+subtraction = math.subtract(10, 4)
+multiplication = math.multiply(6, 7)
+division = math.divide(15, 3)
+
+print(f"Addition: {addition}")
+print(f"Subtraction: {subtraction}")
+print(f"Multiplication: {multiplication}")
+print(f"Division: {division}")
+----
+
+== Trigonometric Functions
+
+The `math` module provides trigonometric functions for dealing with angles and lengths in geometric calculations.
+
+[source,python]
+----
+import math
+
+angle_radians = math.radians(30)
+sine_value = math.sin(angle_radians)
+cosine_value = math.cos(angle_radians)
+tangent_value = math.tan(angle_radians)
+
+print(f"Angle in radians: {angle_radians}")
+print(f"Sine value: {sine_value}")
+print(f"Cosine value: {cosine_value}")
+print(f"Tangent value: {tangent_value}")
+----
+
+== Exponential and Logarithmic Functions
+
+The `math` module offers functions for exponentiation and logarithmic calculations.
+
+[source,python]
+----
+import math
+
+base = 2
+exponent = 3
+power_result = math.pow(base, exponent)
+
+value = 8
+log_base_2 = math.log2(value)
+log_base_10 = math.log10(value)
+natural_log = math.log(value)
+
+print(f"{base} raised to the power of {exponent} is: {power_result}")
+print(f"Log base 2 of {value} is: {log_base_2}")
+print(f"Log base 10 of {value} is: {log_base_10}")
+print(f"Natural logarithm of {value} is: {natural_log}")
+----
+
+== Constants
+
+The `math` module includes several important mathematical constants, such as pi (π) and the Euler's number (e).
+
+[source,python]
+----
+import math
+
+pi = math.pi
+euler_number = math.e
+
+print(f"The value of pi is: {pi}")
+print(f"The value of Euler's number is: {euler_number}")
+----
+
+== Rounding and Absolute Values
+
+The `math` module provides functions for rounding numbers and obtaining their absolute values.
+
+[source,python]
+----
+import math
+
+number = -3.75
+rounded_up = math.ceil(number)
+rounded_down = math.floor(number)
+absolute_value = math.fabs(number)
+
+print(f"Rounded up: {rounded_up}")
+print(f"Rounded down: {rounded_down}")
+print(f"Absolute value: {absolute_value}")
+----
+
+== Conclusion
+
+The `math` module is a valuable tool for performing a wide range of mathematical calculations in Python. This tutorial covered an array of mathematical functions, including basic arithmetic, trigonometric operations, exponential and logarithmic calculations, constants, rounding, and obtaining absolute values.
+
+By mastering the `math` module, you'll be well-equipped to handle a variety of mathematical tasks in your Python programs, from basic computations to more complex scientific calculations.
+
+For further exploration and advanced applications, refer to the official Python documentation (https://docs.python.org/3/library/math.html).
